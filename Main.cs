@@ -1,6 +1,7 @@
 namespace DefaultNamespace
 {
-    public class FDM
+    public class Main
     {
+        
     }
 }
