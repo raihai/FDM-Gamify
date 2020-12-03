@@ -1,7 +1,6 @@
 namespace DefaultNamespace
 {
-    public class Main
+    public class FDM
     {
-        // this is a test
     }
 }
