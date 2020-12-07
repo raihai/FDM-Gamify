@@ -9,12 +9,15 @@ using Microsoft.Extensions.Logging;
 
 namespace fdm_gamify2
 {
+
     public class Program
     {
+
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
-            Console.ReadLine();
+            Console.WriteLine("abc");
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

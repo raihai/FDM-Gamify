@@ -19,6 +19,7 @@ namespace fdm_gamify2.Pages
 
         public void OnGet()
         {
+            Console.Write("test");
         }
     }
 }

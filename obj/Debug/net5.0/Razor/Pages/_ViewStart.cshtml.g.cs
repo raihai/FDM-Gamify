@@ -20,7 +20,7 @@ using fdm_gamify2;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5c05831fc344a09d2edcd9b7ea64465dcbd15998", @"/Pages/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9eda083ce7762ba211f545f584268c85dc231103", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cf1652bb92c01b333582abfc71e44238e81236dd", @"/Pages/_ViewImports.cshtml")]
     public class Pages__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998
