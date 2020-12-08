@@ -1,0 +1,21 @@
+﻿@page "/"
+
+<div class="game-container" @onclick="_gameManager.StartGame">
+    <div class="space">
+        <div class="Astra" style="@AstraCss"></div>
+    </div>
+    <div class="ground"></div>
+</div>
+
+@code {
+
+    GameManager _gameManager;
+    string AstraCss => $"bottom: {_gameManager.Astra.DistFromGround}px";
+
+    protected override void OnInitialized()
+    {
+        _gameManager = new GameManager();
+        _gameManager.PropertyChanged += (o, e) => StateHasChanged();
+    }
+
+}
