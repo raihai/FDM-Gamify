@@ -11,18 +11,56 @@ a.navbar-brand {
 a {
   color: #0366d6;
 }
+.fdmNav{
+  background-color: #212529;
+}
 
 .btn-primary {
-  color: #fff;
+  color: #ffffff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+  color: #ffffff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.button {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: #00E2FF;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  padding: 15px;
+  background-color: #000000;
+  -webkit-box-shadow: 1px 1px 20px 0 #000000;
+  -moz-box-shadow: 1px 1px 20px 0 #000000;
+  box-shadow: 1px 1px 5px 0 #000000;
+  text-shadow: 1px 1px 20px #000000;
+  border: solid #00E2FF 4px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.button:hover {
+  background: #000000;
+  border: solid #00E2FF 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  text-decoration: none;
+}
+
+
+/* Insert image */
+
+
 
 /* Sticky footer styles
 -------------------------------------------------- */

@@ -16,7 +16,9 @@ namespace fdm_gamify2.Pages
         {
             _logger = logger;
         }
-
+		
+	
+	
         public void OnGet()
         {
 
