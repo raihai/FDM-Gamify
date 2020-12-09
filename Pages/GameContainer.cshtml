@@ -1,0 +1,29 @@
+@page
+@using fdm_gamify2
+@model fdm_gamify2.GameContainer
+
+@{
+    GameManager _gameManager = new GameManager();
+    string AstraCss = $"bottom: {_gameManager.Astra.DistFromGround}px";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<style>game.css</style>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<h1> test </h1>
+<div>
+    <div class="game_container">
+        <div class="space">
+            <div class="Astra" style="@AstraCss"></div>
+        </div>
+        <div class="ground"></div>
+    </div>
+</div>
+</body>
+<p onload="@_gameManager.StartGame()">Test</p>
+</html>

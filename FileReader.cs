@@ -9,7 +9,7 @@ namespace fdm_gamify2
         public static string A;
         public static string B;
         public static string C;
-        
+        public static string imageName;
         public static string fileReader(string fileName,int passedCount)
         {
             // Read each line of the file into a string array. Each element
@@ -22,6 +22,7 @@ namespace fdm_gamify2
             A = lines[1];
             B = lines[2];
             C = lines[3];
+            imageName = lines[4];
             return "Index";
 
         }

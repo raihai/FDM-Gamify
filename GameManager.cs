@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace fdm_gamify2
 {
@@ -19,28 +20,39 @@ namespace fdm_gamify2
             IsRunning = true;
             while (IsRunning)
             {
+                Console.Write(Astra.DistFromGround);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Astra)));
+                Astra.DistFromGround = Astra.DistFromGround - 1;
 
                 if (Astra.DistFromGround <= 0)
                 {
+
                     GameOver();
                 }
             }
         }
 
-        public void StartGame()
+        public String StartGame()
         {
+            Console.Write("test123");
             if (!IsRunning)
             {
+                Console.Write("test123");
                 Astra = new AstraModel();
                 MainLoop();
             }
-            
+            Console.Write("test123");
+            return "";
         }
 
         public void GameOver()
         {
             IsRunning = false;
+        }
+
+        public void StateHasChanged()
+        {
+            
         }
     }
 }
