@@ -23,7 +23,6 @@ namespace fdm_gamify2
                 Console.Write(Astra.DistFromGround);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Astra)));
                 Astra.DistFromGround = Astra.DistFromGround - 1;
-                System.Threading.Thread.Sleep(500);
 
                 if (Astra.DistFromGround <= 0)
                 {

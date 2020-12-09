@@ -1,0 +1,24 @@
+﻿.game_container {
+    width: 1500px;
+    height: 1000px;
+    position: absolute;
+}
+
+.space {
+    background-image:url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/andromeda-galaxy-royalty-free-image-1585682435.jpg);
+    width: 1500px;
+    height: 1000px;
+    position: absolute;
+}
+
+.ground {
+    width: 1500px;
+    height: 0;
+    position: absolute;
+    top: 1000px;
+}
+
+.Astra {
+    background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Purple114/v4/c5/84/b8/c584b8ec-230c-059d-c3b0-965e5e28fa6a/source/512x512bb.jpg);
+    left: 750px;
+}

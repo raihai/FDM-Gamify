@@ -13,14 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\Astra.jpg" />
     <None Include="wwwroot\line_graph.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\game.css">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <None Include="wwwroot\space.png" />
   </ItemGroup>
 
 </Project>

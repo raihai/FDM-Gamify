@@ -3,6 +3,7 @@
 @model fdm_gamify2.GameContainer
 
 @{
+
     GameManager _gameManager = new GameManager();
     string AstraCss = $"bottom: {_gameManager.Astra.DistFromGround}px";
     Layout = null;
@@ -12,10 +13,12 @@
 <style>game.css</style>
 <html>
 <head>
+    <link rel="stylesheet" href="css/game.css">
     <title></title>
 </head>
 <body>
 <h1> test </h1>
+<input id="button1" type="button" value="Test">
 <div>
     <div class="game_container" onclick="">
         <div class="space">
@@ -25,4 +28,7 @@
     </div>
 </div>
 </body>
+<script>
+document.getElementById('button1').onclick = () => "@_gameManager.StartGame()"
+</script>
 </html>
