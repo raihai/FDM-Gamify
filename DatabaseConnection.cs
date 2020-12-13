@@ -8,13 +8,12 @@ namespace fdm_gamify2
         // connection variables
         // NOTE: ConString may not work for you guys, you can copy it and change user details to your machine
         // just comment out whichever one(s) aren't for your machine
-        private const string ConString = "Data Source=localhost;Initial Catalog=csc2033;User id=root;Password=SqlPwd01";
-        private SqlConnection _connection;
+        private static string ConString = "server=localhost;uid=root;pwd=SqlPwd01;database=csc2033";
+        private SqlConnection _connection = new SqlConnection(ConString);
 
         // opens connection to database
         public void OpenConnection()
         {
-            _connection = new SqlConnection(ConString);
             _connection.Open();
         }
 
