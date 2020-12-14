@@ -9,32 +9,29 @@
 </head>
 <body>
     <header>
-
-        <nav class="navbar navbar-expand-xl navbar-toggleable-xl navbar-dark box-shadow mb-1 " id= "navigation">
-            <div class="container-custom"  >
-				<a class="nav-bar brand" href="https://www.fdmgroup.com/">
-                	<img src="fdmLogo.png" alt="logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                   	<span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark fdmNav border-bottom box-shadow mb-3 " >
+            <div class="container" >
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                          	<a class="nav-link text-light" asp-area="" asp-page="/Index">Game Homepage</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" href ="/">
+                    <ul class="navbar-nav flex-grow-1" >
+                        <li class="navbar-brand" href ="https://www.fdmgroup.com/">
+                            <img src="fdmLogo.png" alt="logo" >
                         </li>
-                        <li class="nav-item" >
-                           	<a class="nav-link text-light" href = "https://www.fdmgroup.com/privacy/">Privacy</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
-           	</div>
+            </div>
         </nav>
-	</header>
-		
- 
-
-    <div class="container-fluid">
+    </header>
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
