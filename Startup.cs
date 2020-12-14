@@ -22,6 +22,8 @@ namespace fdm_gamify2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
             services.AddRazorPages();
         }
 
@@ -43,6 +45,8 @@ namespace fdm_gamify2
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseSession();  
+            app.UseMvc();
 
             app.UseEndpoints(endpoints =>
             {

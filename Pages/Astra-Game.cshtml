@@ -1,14 +1,31 @@
 @page
 @using fdm_gamify2.Pages
+@using Microsoft.AspNetCore.Http
 @model Test_GameModel
 @{
     ViewData["Title"] = "Astra";
+	SessionManager sessionManager = new SessionManager();
+	sessionManager.QuizSetUp( HttpContext, new FileReader(),"test.csv");
+
 }
 
 <section class="fdm-header-banner reduced-height2 ">
 <div  class = "text-center fdm">
 	<h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Astra Game</span></h1><br>
-	
+			<div class="portfolio-item-wrapper">
+            	<div class="img-text-wrapper">
+    			
+	                <div class="logo-wrapper">
+                        <div class="container-custom">
+	                        <form method="post">
+                                <input class="AnswerButton" type="submit" value="@sessionManager.toString(HttpContext.Session.Get("A"))">
+                                <input class="AnswerButton" type="submit" value="@sessionManager.toString(HttpContext.Session.Get("B"))">
+                                <input class="AnswerButton" type="submit" value="@sessionManager.toString(HttpContext.Session.Get("C"))">
+                            </form>
+                            </div>
+	                </div>
+                </div>
+            </div>
 </div>
 </section>
 

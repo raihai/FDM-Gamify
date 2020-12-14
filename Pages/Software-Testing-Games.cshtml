@@ -1,4 +1,5 @@
 @page
+@using System.Text
 @model STGModel
 @{
     ViewData["Title"] = "Software Testing Games";
@@ -47,7 +48,7 @@
           	
 						<div class="logo-wrapper">
 							<a href="./Quiz-Game">
-                				<img src="quizGAME.png" alt="">
+                				<img src="quizGAME.png" alt="" onclick="@SessionManager.fileSetter("SoftwareTesting.csv", HttpContext)">
 							</a>
 						</div>
 						<div class="subtitle">
