@@ -10,7 +10,7 @@ namespace fdm_gamify2
         public static string B;
         public static string C;
         public static string imageName;
-        public static string fileReader(string fileName,int passedCount)
+        public string fileReader(string fileName,int passedCount)
         {
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
