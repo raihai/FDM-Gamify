@@ -6,7 +6,9 @@ namespace fdm_gamify2
     public class DatabaseConnection
     {
         // connection variables
-        private const string ConString = "Data Source=localhost;Initial Catalog=test;User id=root;Password=SqlPwd01";
+        // when testing be sure to change connection string to suit your local database
+        // perhaps create your own ConString and comment out whichever is not yours
+        private const string ConString = "Data Source=csc2033@ocalhost;Initial Catalog=csc2033;User id=root;Password=SqlPwd01";
         private SqlConnection _connection;
 
         // opens connection to database
@@ -37,7 +39,7 @@ namespace fdm_gamify2
         }
 
         // shows data returned by query in a grid view
-        public object ShowDataGridView(string query)
+        public DataTable GetDataTable(string query)
         {
             SqlDataAdapter adapter = new SqlDataAdapter(query, ConString);
             DataSet dataSet = new DataSet();
