@@ -14,7 +14,7 @@ namespace fdm_gamify2.Pages
         public void OnGet()
         {
             DatabaseConnection dc = new DatabaseConnection();
-            string query = "SELECT Nickname, Score FROM leaderboard ORDER BY Score DESC";
+            const string query = "SELECT Nickname, Score FROM leaderboard ORDER BY Score DESC LIMIT 10";
             
             // open connection to database and gets a datatable from above query
             dc.OpenConnection();
@@ -29,12 +29,6 @@ namespace fdm_gamify2.Pages
         private static string ConvertDataTableToHtml(DataTable dt)
         {
             string html = "<table>";
-            int topScores;
-            
-            // if number of rows > 10, then it will cut off scores at the top 10
-            // if number of rows < 10, then it will just show everything
-            if (dt.Rows.Count > 10) {  topScores = 10; }
-            else {  topScores = dt.Rows.Count; }
 
             //add header row
             html += "<tr>";
@@ -42,7 +36,7 @@ namespace fdm_gamify2.Pages
                 html+="<td>"+dt.Columns[i].ColumnName+"</td>";
             html += "</tr>";
             //add rows
-            for (int i = 0; i < topScores; i++)
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 html += "<tr>";
                 for (int j = 0; j< dt.Columns.Count; j++)
