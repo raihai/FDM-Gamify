@@ -39,7 +39,7 @@ namespace fdm_gamify2
         }
 
         // shows data returned by query in a grid view
-        public object ShowDataGridView(string query)
+        public DataTable GetDataTable(string query)
         {
             SqlDataAdapter adapter = new SqlDataAdapter(query, ConString);
             DataSet dataSet = new DataSet();
