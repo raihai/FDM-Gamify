@@ -24,6 +24,9 @@ namespace fdm_gamify2.Pages
             // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
             string htmlBody = ConvertDataTableToHtml(dt);
             System.IO.File.WriteAllText(@"Leaderboard.cshtml", htmlBody);
+            
+            // closes connection to the database
+            dc.CloseConnection();
         }
         
         // Converts the datatable to html to be shown on the web page
@@ -32,8 +35,8 @@ namespace fdm_gamify2.Pages
             StringBuilder builder = new StringBuilder();
 
             // appends page model, page title & toolbar to StringBuilder
-            builder.Append("@page");
-            builder.Append("@model Leaderboard");
+            builder.Append("@page '/Leaderboard'");
+            builder.Append("@model LeaderboardMOdel");
             builder.Append("@{ViewData['Title'] = 'Leaderboard'; }");
             builder.Append("<section class='fdm-header-banner reduced-height2'>");
             builder.Append("<div  class = 'text-center fdm'>");
@@ -70,6 +73,7 @@ namespace fdm_gamify2.Pages
             builder.Append("</table>");
             builder.Append("</div>");
             builder.Append("</section>");
+            builder.Append("<input type='button' value='Back to Branch Selection' onclick='window.location='@URL''>");
             
             // returns completed string
             return builder.ToString();
