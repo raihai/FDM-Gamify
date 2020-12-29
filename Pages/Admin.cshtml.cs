@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Data;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Renci.SshNet;
 
 namespace fdm_gamify2.Pages
 {
-    public class Leaderboard : PageModel
+    public class Admin : PageModel
     {
-        public string body;
         public void OnGet()
         {
             DatabaseConnection dc = new DatabaseConnection();
-            const string query = "SELECT Nickname, Score FROM leaderboard ORDER BY Score DESC LIMIT 10";
+            const string query = "SELECT * FROM leaderboard";
             
             // open connection to database and gets a datatable from above query
             dc.OpenConnection();
@@ -24,24 +17,24 @@ namespace fdm_gamify2.Pages
 
             // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
             string htmlBody = ConvertDataTableToHtml(dt);
-            System.IO.File.WriteAllText(@"Leaderboard.cshtml", htmlBody);
+            System.IO.File.WriteAllText(@"Admin.cshtml", htmlBody);
             
             // closes connection to the database
             dc.CloseConnection();
         }
         
-        // Converts the datatable to html to be shown on the web page
+         // Converts the datatable to html to be shown on the web page
         private static string ConvertDataTableToHtml(DataTable dt)
         {
             StringBuilder builder = new StringBuilder();
 
             // appends page model, page title & toolbar to StringBuilder
-          //  builder.Append("@page");
-          //  builder.Append("@model Leaderboard");
-          //  builder.Append("@{ViewData['Title'] = 'Leaderboard'; }");
+            builder.Append("@page '/Admin'");
+            builder.Append("@model Admin");
+            builder.Append("@{ViewData['Title'] = 'Admin'; }");
             builder.Append("<section class='fdm-header-banner reduced-height2'>");
             builder.Append("<div  class = 'text-center fdm'>");
-            builder.Append("<h1 itemprop='name' class='banner-heading2'><span class='font-weight-bold'>Leaderboard</span></h1><br>");
+            builder.Append("<h1 itemprop='name' class='banner-heading2'><span class='font-weight-bold'>Admin Page</span></h1><br>");
             builder.Append("</div>");
             builder.Append("</section>");
             
@@ -74,30 +67,9 @@ namespace fdm_gamify2.Pages
             builder.Append("</table>");
             builder.Append("</div>");
             builder.Append("</section>");
-            builder.Append("<input type='button' value='Back to Branch Selection' onclick='window.location='@URL''>");
             
             // returns completed string
             return builder.ToString();
-        }
-        
-
-        public void LeaderboardBuilder()
-        {
-            DatabaseConnection dc = new DatabaseConnection();
-            dc.OpenConnection();
-            SshClient client = dc.SSHTunnel();
-            Console.WriteLine(dc._connection.Database);
-            //const string query = "SELECT Nickname, Score FROM leaderboard ORDER BY Score DESC LIMIT 10";
-            const string query = "SELECT * FROM SoftwareTestingQuiz";
-            // open connection to database and gets a datatable from above query
-            
-            DataTable dt = dc.GetDataTable(query);
-
-            // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
-            string htmlBody = ConvertDataTableToHtml(dt);
-            client.Disconnect();
-            dc.CloseConnection();
-            this.body= htmlBody;
         }
     }
 }

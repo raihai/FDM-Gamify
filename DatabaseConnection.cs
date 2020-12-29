@@ -95,8 +95,8 @@ namespace fdm_gamify2
          */
         public SshClient SSHTunnel()
         {
-            string username = "b9012721";
-            string password = "Intensetryterms1";
+            string username = "";
+            string password = "";
             Console.WriteLine("Start of method");
             var connectionInfo = new SshClient("cs-linux.ncl.ac.uk",
                 username, password);
