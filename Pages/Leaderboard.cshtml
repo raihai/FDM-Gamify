@@ -2,6 +2,10 @@
 @model Leaderboard
 @{
     ViewData["Title"] = "Leaderboard";
+    Leaderboard test= new Leaderboard();
+    test.LeaderboardBuilder();
+    string leaderboard = test.body;
+    
 }
 <section class="fdm-header-banner reduced-height2 ">
     <div  class = "text-center fdm">
@@ -9,11 +13,13 @@
 	
     </div>
 </section>
-
+<div>
+@Html.Raw(leaderboard);
+</div>
 <section class="secondSelection">
 	
     <div class="container"> 
-		
+        <p>@test.body</p>
         <table class="blackTable">
             <thead>
             <tr>
