@@ -12,11 +12,10 @@ namespace fdm_gamify2.Pages
 {
     public class Leaderboard : PageModel
     {
-        public string body;
         public void OnGet()
         {
             DatabaseConnection dc = new DatabaseConnection();
-            const string query = "SELECT Nickname, Score FROM leaderboard ORDER BY Score DESC LIMIT 10";
+            const string query = "SELECT nickname, points FROM SoftwareTestingQuiz ORDER BY points DESC LIMIT 10";
             
             // open connection to database and gets a datatable from above query
             dc.OpenConnection();
@@ -36,9 +35,9 @@ namespace fdm_gamify2.Pages
             StringBuilder builder = new StringBuilder();
 
             // appends page model, page title & toolbar to StringBuilder
-          //  builder.Append("@page");
-          //  builder.Append("@model Leaderboard");
-          //  builder.Append("@{ViewData['Title'] = 'Leaderboard'; }");
+            builder.Append("@page '/Leaderboard'");
+            builder.Append("@model Leaderboard");
+            builder.Append("@{ViewData['Title'] = 'Leaderboard'; }");
             builder.Append("<section class='fdm-header-banner reduced-height2'>");
             builder.Append("<div  class = 'text-center fdm'>");
             builder.Append("<h1 itemprop='name' class='banner-heading2'><span class='font-weight-bold'>Leaderboard</span></h1><br>");
@@ -81,12 +80,12 @@ namespace fdm_gamify2.Pages
         }
         
 
-        public void LeaderboardBuilder()
+        /*public void LeaderboardBuilder()
         {
             DatabaseConnection dc = new DatabaseConnection();
             dc.OpenConnection();
             SshClient client = dc.SSHTunnel();
-            Console.WriteLine(dc._connection.Database);
+            Console.WriteLine(dc.Connection.Database);
             //const string query = "SELECT Nickname, Score FROM leaderboard ORDER BY Score DESC LIMIT 10";
             const string query = "SELECT * FROM SoftwareTestingQuiz";
             // open connection to database and gets a datatable from above query
@@ -98,6 +97,6 @@ namespace fdm_gamify2.Pages
             client.Disconnect();
             dc.CloseConnection();
             this.body= htmlBody;
-        }
+        }*/
     }
 }

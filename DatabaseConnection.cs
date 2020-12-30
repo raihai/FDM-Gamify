@@ -17,41 +17,34 @@ namespace fdm_gamify2
         // when testing be sure to change connection string to suit your local database
         // perhaps create your own ConString and comment out whichever is not yours
         
-        private string ConString = "Data Source=cs-db.ncl.ac.uk;Initial Catalog=t2033t26;User id=t2033t26;Password=Sit-HewsRide";
-        public MySqlConnection _connection;
-        public SshClient Client;
+        //private string _conString = "Data Source=cs-db.ncl.ac.uk;Initial Catalog=t2033t26;User id=t2033t26;Password=Sit-HewsRide";
+        private const string ConString = "SERVER= localhost;UID=t2033t26;PASSWORD=Sit-HewsRide;DATABASE=t2033t26";
+        private MySqlConnection _connection;
+        private SshClient _client;
 
         // opens connection to database
         public void OpenConnection()
         {
             Console.WriteLine("Start of open connection");
-            SshClient client= SSHTunnel();
+            _client = SshTunnel();
             Console.Write("hanging...");
-            //client.RunCommand("mysql -h cs-db.ncl.ac.uk -u t2033t26 -p Sit-HewsRide");
+            //_client.RunCommand("mysql -h cs-db.ncl.ac.uk -u t2033t26 -p Sit-HewsRide");
             Console.Write("done");
-            var portForwarded = new ForwardedPortLocal("localhost", 3306, "cs-db.ncl.ac.uk", 3306);;
+            ForwardedPortLocal portForwarded = new ForwardedPortLocal("localhost", 3306, "cs-db.ncl.ac.uk", 3306);;
             Console.WriteLine(portForwarded.IsStarted);
-            client.AddForwardedPort(portForwarded);
+            _client.AddForwardedPort(portForwarded);
             portForwarded.Start();
             Console.Write(portForwarded.IsStarted);
-            MySqlConnection _connection = new MySqlConnection(
-                "SERVER= localhost;UID=t2033t26;PASSWORD=Sit-HewsRide;DATABASE=t2033t26");// server is equal to the first host variable in the port above ^^
+            _connection = new MySqlConnection(ConString);
             _connection.Open();
             Console.WriteLine("opened");
-            const string query = "SELECT * FROM SoftwareTestingQuiz";
-            MySqlCommand cmd = new MySqlCommand(query, _connection);
-            DataSet customers = new DataSet();
             Console.Write("reached end of opening connection");
-            this._connection = _connection;
-            
-            Client = client;
-
         }
 
         // close connection to database
         public void CloseConnection()
         {
-            this._connection.Close();
+            _connection.Close();
         }
 
         // executes a given query
@@ -72,9 +65,15 @@ namespace fdm_gamify2
         // shows data returned by query in a grid view
         public DataTable GetDataTable(string query)
         {
-            Console.Write(_connection.Database);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, ConString);
+            DataSet dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            return dataSet.Tables[0];
+
+            
+            /*Console.Write(Connection.Database);
             DataTable dt = new DataTable();
-            MySqlCommand cmd = _connection.CreateCommand();
+            MySqlCommand cmd = Connection.CreateCommand();
             cmd.CommandText = query;
             cmd.CommandType = CommandType.Text;
             using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
@@ -83,7 +82,7 @@ namespace fdm_gamify2
                 da.Fill(dt);
             }
 
-            return dt;
+            return dt;*/
         }
 
         /*
@@ -93,7 +92,7 @@ namespace fdm_gamify2
          * Connects to SQL DB
          * 
          */
-        public SshClient SSHTunnel()
+        private static SshClient SshTunnel()
         {
             string username = "";
             string password = "";
