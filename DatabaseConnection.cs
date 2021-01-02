@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net;
@@ -65,7 +65,7 @@ namespace fdm_gamify2
         // shows data returned by query in a grid view
         public DataTable GetDataTable(string query)
         {
-            MySqlDataAdapter adapter = new MySqlDataAdapter(query, ConString);
+            SqlDataAdapter adapter = new SqlDataAdapter(query, ConString);
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             return dataSet.Tables[0];
@@ -94,8 +94,8 @@ namespace fdm_gamify2
          */
         private static SshClient SshTunnel()
         {
-            string username = "b9012721";
-            string password = "Intensetryterms1";
+            string username = "";
+            string password = "";
             Console.WriteLine("Start of method");
             var connectionInfo = new SshClient("cs-linux.ncl.ac.uk",
                 username, password);
