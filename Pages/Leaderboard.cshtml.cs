@@ -16,7 +16,6 @@ namespace fdm_gamify2.Pages
         {
             DatabaseConnection dc = new DatabaseConnection();
             const string query = "SELECT nickname, points FROM SoftwareTestingQuiz ORDER BY points DESC LIMIT 10";
-            
             // open connection to database and gets a datatable from above query
             dc.OpenConnection();
             DataTable dt = dc.GetDataTable(query);

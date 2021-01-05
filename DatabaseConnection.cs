@@ -1,8 +1,11 @@
 ﻿﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Net;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+ using System.IO;
+ using System.Linq;
+ using System.Net;
+ using System.Text;
+ using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.SignalR;
 using MySql.Data.MySqlClient;
 using Renci.SshNet;
@@ -30,7 +33,7 @@ namespace fdm_gamify2
             Console.Write("hanging...");
             //_client.RunCommand("mysql -h cs-db.ncl.ac.uk -u t2033t26 -p Sit-HewsRide");
             Console.Write("done");
-            ForwardedPortLocal portForwarded = new ForwardedPortLocal("localhost", 3306, "cs-db.ncl.ac.uk", 3306);;
+            ForwardedPortLocal portForwarded = new ForwardedPortLocal("127.0.0.1", 3306, "cs-db.ncl.ac.uk", 3306);;
             Console.WriteLine(portForwarded.IsStarted);
             _client.AddForwardedPort(portForwarded);
             portForwarded.Start();
@@ -94,8 +97,9 @@ namespace fdm_gamify2
          */
         private static SshClient SshTunnel()
         {
-            string username = "b9012721";
-            string password = "";
+            string[] loginDetailsArray= LoginDetails();
+            string username = loginDetailsArray[0];
+            string password = loginDetailsArray[1];
             Console.WriteLine("Start of method");
             var connectionInfo = new SshClient("cs-linux.ncl.ac.uk",
                 username, password);
@@ -110,5 +114,50 @@ namespace fdm_gamify2
 
                 return null;
         }
+
+        private static string[] LoginDetails()
+        {
+            string password;
+            string userName;
+            string fileName = @"userDetails.txt";
+
+            try
+            {
+                // Check if file already exists. If yes, delete it.     
+                if (File.Exists(fileName))
+                {
+                    userName = File.ReadLines(fileName).Skip(0).Take(1).First();
+                    password = File.ReadLines(fileName).Skip(1).Take(1).First();
+                    // File.Delete(fileName);  
+                    return new string[]{userName,password};
+                }
+                else
+                {
+                    // Create a new file     
+                    using (FileStream fs = File.Create(fileName))
+                    {
+                        // Type your username and press enter
+                        Console.WriteLine("Enter username:");
+                        userName = Console.ReadLine();
+                        Console.WriteLine("Enter password:");
+                        password = Console.ReadLine();
+                        // Add some text to file    
+                        Byte[] title = new UTF8Encoding(true).GetBytes(userName+"\n");
+                        fs.Write(title, 0, title.Length);
+                        byte[] author = new UTF8Encoding(true).GetBytes(password);
+                        fs.Write(author, 0, author.Length);
+                    }
+                    
+                }
+                return new string[]{userName,password};
+            }
+            catch (Exception Ex)
+            {
+                Console.WriteLine(Ex.ToString());
+                return null;
+            }
+        }
+
+        }
     }
-    }
+    
