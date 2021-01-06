@@ -19,6 +19,9 @@ namespace fdm_gamify2
             {
                 if (Username == dataTable.Rows[i]["Username"].ToString() && Password == dataTable.Rows[i]["Password"].ToString())
                 {
+                    HttpCookie httpCookie = new HttpCookie();
+                    httpCookie["UserType"] = "Admin";
+                    
                     return true;
                 }
             }
