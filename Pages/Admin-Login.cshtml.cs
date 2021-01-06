@@ -8,5 +8,18 @@ namespace fdm_gamify2.Pages
         {
             
         }
+
+        public void Login()
+        {
+            AdminLogin adminLogin = new AdminLogin();
+            if (adminLogin.Login())
+            {
+                Response.Redirect("./Admin.cshtml");
+            }
+            else
+            {
+                //output failed to login message
+            }
+        }
     }
 }
