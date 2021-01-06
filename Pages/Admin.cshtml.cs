@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,6 +9,12 @@ namespace fdm_gamify2.Pages
     {
         public void OnGet()
         {
+            if(Request.Cookies["userType"] != "Admin")
+            {
+                Response.Redirect("/error");
+                return;
+            }
+            // check that the admin has logged in to access this page if not it redirects them to an error page
             DatabaseConnection dc = new DatabaseConnection();
             const string query = "SELECT * FROM Persons";
             

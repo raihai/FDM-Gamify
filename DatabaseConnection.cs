@@ -21,7 +21,7 @@ namespace fdm_gamify2
         // perhaps create your own ConString and comment out whichever is not yours
         
         //private string _conString = "Data Source=cs-db.ncl.ac.uk;Initial Catalog=t2033t26;User id=t2033t26;Password=Sit-HewsRide";
-        private const string ConString = "SERVER= localhost;UID=t2033t26;PASSWORD=Sit-HewsRide;DATABASE=t2033t26";
+        private const string ConString = "SERVER= 127.0.0.1;UID=t2033t26;PASSWORD=Sit-HewsRide;DATABASE=t2033t26";
         private MySqlConnection _connection;
         private SshClient _client;
 
@@ -105,14 +105,14 @@ namespace fdm_gamify2
                 username, password);
             var client = connectionInfo;
             client.Connect();
-                if (client.IsConnected)
-                {
-                    Console.WriteLine("client is connected");
-                    return client;
-                }
-                Console.Write("client not connected");
+            if (client.IsConnected)
+            {
+                Console.WriteLine("client is connected");
+                return client;
+            }
+            Console.Write("client not connected");
 
-                return null;
+            return null;
         }
 
         private static string[] LoginDetails()
