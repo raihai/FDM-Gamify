@@ -9,7 +9,7 @@ namespace fdm_gamify2.Pages
         public void OnGet()
         {
             DatabaseConnection dc = new DatabaseConnection();
-            const string query = "SELECT * FROM leaderboard";
+            const string query = "SELECT * FROM Persons";
             
             // open connection to database and gets a datatable from above query
             dc.OpenConnection();
@@ -48,9 +48,10 @@ namespace fdm_gamify2.Pages
             builder.Append("<tr>") ;
             for (int i = 0; i < dt.Columns.Count; i++)
             {
-                builder.Append("<td>"+dt.Columns[i].ColumnName+"</td>");
-            } 
+                builder.Append("<th>"+dt.Columns[i].ColumnName+"</th>");
+            }
             builder.Append("</tr>");
+            builder.Append("</thead>");
             
             // appends item rows to StringBuilder
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -67,6 +68,12 @@ namespace fdm_gamify2.Pages
             builder.Append("</table>");
             builder.Append("</div>");
             builder.Append("</section>");
+            
+            /*// appends the update and delete buttons
+            builder.Append("</div>");
+            builder.Append("<input type='button' value='Update User' data-bind='click: $root.update'/>");
+            builder.Append("<input type='button' value='Delete User' data-bind='click: $root.delete'/>");
+            builder.Append("</div>");*/
             
             // returns completed string
             return builder.ToString();
