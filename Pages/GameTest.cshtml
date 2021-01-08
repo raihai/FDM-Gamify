@@ -1,0 +1,28 @@
+@page
+@using Microsoft.AspNetCore.Http
+@model fdm_gamify2.Pages.GameTest
+
+@{
+	ViewData["Title"] = "Astra";
+	SessionManager sessionManager = new SessionManager();
+	sessionManager.QuizSetUp( HttpContext, new FileReader(),"test.csv");
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/game.css">
+
+<canvas width="1200" height="1000" >
+
+</canvas>
+<div id="Adata" style="display: none">
+	@sessionManager.toString(HttpContext.Session.Get("A"))
+</div>
+<div id="Bdata" style="display: none">
+	@sessionManager.toString(HttpContext.Session.Get("B"))
+</div>
+<div id="Cdata" style="display: none">
+	@sessionManager.toString(HttpContext.Session.Get("C"))
+</div>
+
+<script type='text/javascript' src='js/FlappyStar.js'></script> 
+

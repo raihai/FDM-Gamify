@@ -1,12 +1,12 @@
 @page
 @using fdm_gamify2.Pages
 @using Microsoft.AspNetCore.Http
+@using System.Net
 @model Test_GameModel
 @{
     ViewData["Title"] = "Astra";
 	SessionManager sessionManager = new SessionManager();
 	sessionManager.QuizSetUp( HttpContext, new FileReader(),"test.csv");
-
 }
 
 <section class="fdm-header-banner reduced-height2 ">
@@ -28,7 +28,9 @@
             </div>
 </div>
 </section>
+<script>
 
+</script>
 <section class="secondSelection">
 	
 </section>

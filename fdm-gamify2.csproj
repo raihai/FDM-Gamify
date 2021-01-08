@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Include="wwwroot\Astra.jpg" />
+    <None Include="wwwroot\backgroundspace.png" />
     <None Include="wwwroot\line_graph.png" />
     <None Include="wwwroot\space.png" />
   </ItemGroup>

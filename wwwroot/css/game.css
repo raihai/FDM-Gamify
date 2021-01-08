@@ -22,3 +22,6 @@
     background-image: url(https://is4-ssl.mzstatic.com/image/thumb/Purple114/v4/c5/84/b8/c584b8ec-230c-059d-c3b0-965e5e28fa6a/source/512x512bb.jpg);
     left: 750px;
 }
+canvas {
+    border: 1px solid black;
+}
