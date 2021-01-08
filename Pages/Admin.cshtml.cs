@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -9,10 +10,19 @@ namespace fdm_gamify2.Pages
     {
         public void OnGet()
         {
-            if(Request.Cookies["userType"] != "Admin")
+            
+            Cookie cookie= new Cookie();
+            CookieContainer jar = new CookieContainer();
+            cookie.Value = "Admin";
+            Uri uri = new Uri("https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0");
+            cookie.Domain = "https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0";
+            cookie.Name = "UserType";
+            jar.Add(cookie);
+            Console.Out.WriteLine(jar.GetCookies(uri));
+            //if(Request.Cookies)
             {
-                Response.Redirect("/error");
-                return;
+           //     Response.Redirect("/error");
+          //      return;
             }
             // check that the admin has logged in to access this page if not it redirects them to an error page
             DatabaseConnection dc = new DatabaseConnection();
