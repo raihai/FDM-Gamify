@@ -2,17 +2,32 @@
 @model Admin
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Admin";
 }
+<section class="fdm-header-banner reduced-height2 ">
+    <div  class = "text-center fdm">
+        <h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Leaderboard</span></h1><br>
+	
+    </div>
+</section>
 
-<!DOCTYPE html>
+<section class="secondSelection">
+	
+    <div class="container">
 
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-<div>
-</div>
-</body>
-</html>
+        @Html.Raw(System.IO.File.ReadAllText("AdminTable.html"))
+
+        <br>
+        <br>
+    </div>
+    
+    <div>
+        
+    </div>
+    
+    <script>
+        function deleteUser(uid){
+            uid.parent("tr").remove()
+        }
+    </script>
+</section>

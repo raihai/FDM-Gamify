@@ -24,7 +24,7 @@ namespace fdm_gamify2.Pages
 
             // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
             string htmlBody = ConvertDataTableToHtml(dt);
-            System.IO.File.WriteAllText(@"Admin.cshtml", htmlBody);
+            System.IO.File.WriteAllText(@"AdminTable.html", htmlBody);
             
             // closes connection to the database
             dc.CloseConnection();
@@ -35,19 +35,7 @@ namespace fdm_gamify2.Pages
         {
             StringBuilder builder = new StringBuilder();
 
-            // appends page model, page title & toolbar to StringBuilder
-            builder.Append("@page '/Admin'");
-            builder.Append("@model Admin");
-            builder.Append("@{ViewData['Title'] = 'Admin'; }");
-            builder.Append("<section class='fdm-header-banner reduced-height2'>");
-            builder.Append("<div  class = 'text-center fdm'>");
-            builder.Append("<h1 itemprop='name' class='banner-heading2'><span class='font-weight-bold'>Admin Page</span></h1><br>");
-            builder.Append("</div>");
-            builder.Append("</section>");
-            
-            // appends table class to StringBuilder
-            builder.Append("<section class='secondSelection'>");
-            builder.Append("<div class='container'>");
+            // appends table class
             builder.Append("<table class='blackTable'>");
             builder.Append("<thead>");
             
@@ -73,14 +61,6 @@ namespace fdm_gamify2.Pages
             
             // appends closing html to builder
             builder.Append("</table>");
-            builder.Append("</div>");
-            builder.Append("</section>");
-            
-            /*// appends the update and delete buttons
-            builder.Append("</div>");
-            builder.Append("<input type='button' value='Update User' data-bind='click: $root.update'/>");
-            builder.Append("<input type='button' value='Delete User' data-bind='click: $root.delete'/>");
-            builder.Append("</div>");*/
             
             // returns completed string
             return builder.ToString();

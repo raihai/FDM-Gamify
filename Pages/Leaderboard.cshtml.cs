@@ -33,6 +33,7 @@ namespace fdm_gamify2.Pages
         {
             StringBuilder builder = new StringBuilder();
             
+            // appends table class
             builder.Append("<table class='blackTable'>");
             builder.Append("<thead>");
             
