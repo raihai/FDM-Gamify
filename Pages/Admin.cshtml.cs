@@ -55,6 +55,8 @@ namespace fdm_gamify2.Pages
             {
                 builder.Append("<th>"+dt.Columns[i].ColumnName+"</th>");
             }
+            builder.Append("<th>Update User</th>");
+            builder.Append("<th>Delete User</th>");
             builder.Append("</tr>");
             builder.Append("</thead>");
             
@@ -66,6 +68,10 @@ namespace fdm_gamify2.Pages
                 {
                     builder.Append("<td>" + dt.Rows[i][j].ToString() + "</td>");
                 }
+                builder.Append("<td><button type='button' onclick='updateUser(this)' style='background-color: #f8f9fa; display: table; " +
+                               "text-align: center; margin: 0 auto'>Update User User</button>");
+                builder.Append("<td><button type='button' onclick='deleteUser()' style='background-color: #f8f9fa; display: table; " +
+                               "text-align: center; margin: 0 auto'>Delete User</button>");
                 builder.Append("</tr>");
             }
             

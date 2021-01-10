@@ -4,6 +4,11 @@
 @{
     ViewData["Title"] = "Admin";
 }
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+
 <section class="fdm-header-banner reduced-height2 ">
     <div  class = "text-center fdm">
         <h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Leaderboard</span></h1><br>
@@ -25,9 +30,38 @@
         
     </div>
     
-    <script>
-        function deleteUser(uid){
-            uid.parent("tr").remove()
+    <script >
+    
+        function updateUser(uid) {
+            _row = uid.parent("tr");
+            var cols = _row.children("td");
+            $("#Lastname").val($(cols[1]).text());
+            $("#Firstname").val($(cols[2]).text());
+            $("#Address").val($(cols[3]).text());
+            $("#City").val($(cols[3]).text());
+        
+            // Change Update Button Text
+            $("#updateButton").text("Update");
         }
+
+    
+        function deleteUser(){
+            var delID = $(this).attr('PersonID');
+            var row = $(this).parent().parent();
+            
+            $.ajax({
+                        type:'POST',
+                        url:'process.php',
+                        data: {delete_id : delID},
+                        success:function(data) {
+                            if(data === "YES") {
+                               row.remove();
+                            } 
+                            else {
+                            }
+                        }
+                });
+        }
+        
     </script>
 </section>
