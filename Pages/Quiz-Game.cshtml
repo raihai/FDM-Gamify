@@ -1,16 +1,83 @@
 @page
-@model BI_QuizModel
+@using Microsoft.AspNetCore.Http
+@model fdm_gamify2.Pages.QuizModel
 @{
-    ViewData["Title"] = "Data Analysis Quiz";
+	ViewData["Title"] = "Quiz";
+	SessionManager sessionManager = new SessionManager();
+	sessionManager.QuizSetUp( HttpContext, new FileReader(),"quizQuestionTest.csv");
 }
 
-<section class="fdm-header-banner reduced-height2 ">
-    <div  class = "text-center fdm">
-        <h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Quiz Game</span></h1><br>
-	
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/quiz.css">
+  
+
+<section class="secondSelection" >
+<!-- start Quiz button -->
+    <div class="start_btn"><button>Start Quiz</button></div>
+
+    <!-- Rules Box -->
+    <div class="rule_box">
+        <div class="rule-title"><span>Rules of this Quiz</span></div>
+        <div class="rule-list">
+            <div class="rule">1. There are 10 question.</div>
+            <div class="rule">2. You have <span>12 seconds</span> per each question.</div>
+            <div class="rule">3. Each question is worth 2 points</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">Exit Quiz</button>
+            <button class="restart">Continue</button>
+        </div>
+    </div>
+
+    <!-- Quiz Box -->
+    <div class="quiz_box">
+        <header>
+            <div class="title"> #name Quiz</div>
+            <div class="timer">
+                <div class="time_left_txt">Time Left</div>
+                <div class="timer_sec">12</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section>
+            <div class="que_text">
+                <!-- Inserts question from JavaScript -->
+            </div>
+            <div class="option_list">
+                <!-- Inserts options from JavaScript -->
+            </div>
+        </section>
+
+        <!-- footer of Quiz Box -->
+        <footer>
+            <div class="total_que">
+                <!-- Inserts Question Count Number from JavaScript -->
+            </div>
+            <button class="next_btn">Next Question</button>
+        </footer>
+    </div>
+
+    <!-- Result Box -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="complete_text">You've completed the Quiz!</div>
+        <div class="score_text">
+            <!-- Here I've inserted Score Result from JavaScript -->
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay Quiz</button>
+            <button class="quit">Quit Quiz</button>
+        </div>
     </div>
 </section>
+<!-- separate file for questions and answer -->
+    <script type='text/javascript' src='js/QuizQuestions.js'></script>
+    
+    <!-- JS file for the quiz -->
+    <script type='text/javascript' src='js/Quiz.js'></script> 
+    
+    
 
-<section class="secondSelection">
-	
-</section>

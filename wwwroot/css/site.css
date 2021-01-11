@@ -182,7 +182,17 @@ hr.spacer {
   margin: 0;
   max-width: none;
   background-color: #2d3036;
-  height: 100vh;
+  height: 80vh;
+}
+
+.thirdSelection {
+  width: 100%;
+  padding: 0;
+  display: table;
+  margin: 0;
+  max-width: none;
+  background-color: #2d3036;
+  height: 80vh;
 }
 
 
