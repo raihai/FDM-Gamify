@@ -39,7 +39,11 @@ namespace fdm_gamify2
             portForwarded.Start();
             Console.Write(portForwarded.IsStarted);
             _connection = new MySqlConnection(ConString);
-            _connection.Open();
+            if (_connection.State != ConnectionState.Open)
+            {
+                _connection.Open();
+            }
+            
             Console.WriteLine("opened");
             Console.Write("reached end of opening connection");
         }
@@ -53,6 +57,8 @@ namespace fdm_gamify2
         // executes a given query
         public void ExecuteQuery(string query)
         {
+            
+            Console.WriteLine("Reached Execute Query Method");
             MySqlCommand cmd = new MySqlCommand(query, _connection);
             cmd.ExecuteNonQuery();
         }
