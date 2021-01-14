@@ -2,6 +2,7 @@
 using System.Data;
 using System.Net;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using MySqlX.XDevAPI.Relational;
 using Ubiety.Dns.Core;
 
@@ -9,7 +10,7 @@ namespace fdm_gamify2
 {
     public class AdminLogin
     {
-        public Boolean Login()
+        public Boolean Login(HttpContext httpContext)
         {
             String Username = "";
             String Password = "";
@@ -20,11 +21,8 @@ namespace fdm_gamify2
             {
                 if (Username == dataTable.Rows[i]["Username"].ToString() && Password == dataTable.Rows[i]["Password"].ToString())
                 {
-                    Cookie cookie= new Cookie();
-                    var request = (HttpWebRequest)WebRequest.Create("");
-                    request.CookieContainer = new CookieContainer();
-                    cookie.Value = "AdminUser";
-                    request.CookieContainer.Add(cookie);
+                    SessionManager session = new SessionManager();
+                    session.NewUser(httpContext, session, "true");
                     return true;
                 }
             }
