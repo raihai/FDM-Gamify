@@ -11,6 +11,16 @@ namespace fdm_gamify2
 {
     public class SessionManager// Class is built to manage session data in the pages context
     {
+        public void NewUser(HttpContext context, SessionManager session, String IsAdmin)
+        {
+            Byte[] Admin = Encoding.ASCII.GetBytes(IsAdmin);
+            context.Session.Set("IsAdmin", Admin);
+        }
+
+        public static String GetUserType(HttpContext context, SessionManager session)
+        {
+            return context.Session.Get("IsAdmin").ToString();
+        }
         public void QuizSetUp(HttpContext context, FileReader fileReader, string fileName) // Sets up quiz data into the session
         {
             
