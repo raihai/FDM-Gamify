@@ -2,9 +2,10 @@
 using System.Data;
 using System.Net;
 using System.Text;
-using System.Web;
-using Microsoft.AspNetCore.Http;
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MySql.Data.MySqlClient;
 
 namespace fdm_gamify2.Pages
 {
@@ -12,19 +13,20 @@ namespace fdm_gamify2.Pages
     {
         public void OnGet()
         {
+            
             Cookie cookie= new Cookie();
             CookieContainer jar = new CookieContainer();
             cookie.Value = "Admin";
             Uri uri = new Uri("https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0");
             cookie.Domain = "https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0";
             cookie.Name = "UserType";
-            //jar.Add(cookie);
-           // Console.Out.WriteLine(jar.GetCookies(uri));
-            //if(Request.Cookies)
+            /*jar.Add(cookie);*/
+            /*Console.Out.WriteLine(jar.GetCookies(uri));*/
+            /*//if(Request.Cookies)
             {
-           //     Response.Redirect("/error");
-          //      return;
-            }
+               //     Response.Redirect("/error");
+               //      return;
+            }*/
             // check that the admin has logged in to access this page if not it redirects them to an error page
             DatabaseConnection dc = new DatabaseConnection();
             const string query = "SELECT * FROM Persons";
@@ -38,6 +40,19 @@ namespace fdm_gamify2.Pages
             System.IO.File.WriteAllText(@"AdminTable.html", htmlBody);
             
             // closes connection to the database
+            dc.CloseConnection();
+        }
+
+        [HttpPost]
+        public async void OnPost()
+        {
+            Console.WriteLine("Reached Delete Method");
+            DatabaseConnection dc = new DatabaseConnection();
+            dc.OpenConnection();
+            string id = HttpContext.Request.Form["PersonToDelete"];
+            string query = $"DELETE FROM Persons WHERE PersonID='{id}'";
+            
+            dc.ExecuteQuery(query);
             dc.CloseConnection();
         }
         
@@ -56,8 +71,6 @@ namespace fdm_gamify2.Pages
             {
                 builder.Append("<th>"+dt.Columns[i].ColumnName+"</th>");
             }
-            builder.Append("<th>Update User</th>");
-            builder.Append("<th>Delete User</th>");
             builder.Append("</tr>");
             builder.Append("</thead>");
             
@@ -69,10 +82,6 @@ namespace fdm_gamify2.Pages
                 {
                     builder.Append("<td>" + dt.Rows[i][j].ToString() + "</td>");
                 }
-                builder.Append("<td><button type='button' onclick='updateUser(this)' style='background-color: #f8f9fa; display: table; " +
-                               "text-align: center; margin: 0 auto'>Update User User</button>");
-                builder.Append("<td><button type='button' onclick='deleteUser()' style='background-color: #f8f9fa; display: table; " +
-                               "text-align: center; margin: 0 auto'>Delete User</button>");
                 builder.Append("</tr>");
             }
             

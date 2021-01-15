@@ -20,7 +20,7 @@ namespace fdm_gamify2.Pages
             dc.OpenConnection();
             DataTable dt = dc.GetDataTable(query);
 
-            // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
+            // retrieves new html body created from datatable and writes it to Leaderboard page
             string htmlBody = ConvertDataTableToHtml(dt);
             System.IO.File.WriteAllText(@"leaderboardTable.html", htmlBody);
             
