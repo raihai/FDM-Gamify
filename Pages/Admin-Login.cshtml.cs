@@ -12,7 +12,7 @@ namespace fdm_gamify2.Pages
             
         }
 
-        public static String Login(HttpContext HttpContext, HttpResponse Response, HttpRequest HttpRequest)
+        public static String Login(HttpContext HttpContext, HttpResponse Response)
         {
             AdminLogin adminLogin = new AdminLogin();
             if (adminLogin.Login(HttpContext))
