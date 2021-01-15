@@ -23,9 +23,11 @@ namespace fdm_gamify2
                 {
                     SessionManager session = new SessionManager();
                     session.NewUser(httpContext, session, "true");
+                    databaseConnection.CloseConnection();
                     return true;
                 }
             }
+            databaseConnection.CloseConnection();
             return false;
         }
     }
