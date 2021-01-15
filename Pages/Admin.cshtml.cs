@@ -2,6 +2,8 @@
 using System.Data;
 using System.Net;
 using System.Text;
+using System.Web;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace fdm_gamify2.Pages
@@ -10,15 +12,14 @@ namespace fdm_gamify2.Pages
     {
         public void OnGet()
         {
-            
             Cookie cookie= new Cookie();
             CookieContainer jar = new CookieContainer();
             cookie.Value = "Admin";
             Uri uri = new Uri("https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0");
             cookie.Domain = "https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0";
             cookie.Name = "UserType";
-            jar.Add(cookie);
-            Console.Out.WriteLine(jar.GetCookies(uri));
+            //jar.Add(cookie);
+           // Console.Out.WriteLine(jar.GetCookies(uri));
             //if(Request.Cookies)
             {
            //     Response.Redirect("/error");

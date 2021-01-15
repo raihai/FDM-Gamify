@@ -45,9 +45,14 @@ namespace fdm_gamify2
         }
 
         // close connection to database
-        public void CloseConnection()
+        public void CloseConnection()    
         {
             _connection.Close();
+            foreach (var ports in _client.ForwardedPorts)
+            {
+                ports.Stop();
+            }
+            
         }
 
         // executes a given query

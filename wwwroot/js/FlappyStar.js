@@ -11,23 +11,54 @@ var y=10;
 
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
-let Adata = document.getElementById("Adata").textContent
-let Bdata = document.getElementById("Bdata").textContent
-let Cdata = document.getElementById("Cdata").textContent
-let ItemArray = [Adata,Bdata,Cdata]
 const SCALE = 0.5;
 const WIDTH = 312;
 const HEIGHT = 292;
 const SCALED_WIDTH = SCALE * WIDTH;
 const SCALED_HEIGHT = SCALE * HEIGHT;
-const ANSWER_SIZE = 120;
+const ANSWER_SIZE = canvas.height/5;
+let questioncount = 0
+let Points = 0
+
+function correctAnswer(){
+    console.log(Answer)
+    if(Answer == 1) {
+        if (positionX > (canvas.width)/ 3) {
+            alert("wrong")
+        } else {
+            alert(positionX)
+            alert(canvas.width/3)
+            alert("correct")
+            Points = Points + 1
+        }
+    }
+    else if(Answer == 2) {
+        if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) {
+            alert("wrong")
+        } else {
+            Points = Points + 1
+            alert("correct")
+        }
+    }
+        else if(Answer == 3) {
+            if (positionX < 2 * (canvas.width / 3)) {
+                alert("wrong")
+            } else {
+                Points = Points + 1
+                alert("correct")
+            }
+        }
+    }
 function drawAnswers(){
+    getData()
     let imageObj = new Image();
     imageObj.src = "SpaceForGame.png";
         for (i = 0; i < 4; i++) {
-            ctx.drawImage(imageObj, x , y);
+            ctx.drawImage(imageObj, x , y, canvas.width/3, canvas.height/5);
+            ctx.strokeRect(x,y,canvas.width/3,canvas.height/5)
             ctx.font = "40pt Calibri";
-            ctx.fillText(ItemArray[i],x+ 180,120);
+            document.getElementById("question").innerHTML = questions[questioncount].question
+            ctx.fillText(questions[questioncount].options[i],x+ 180,120);
             x = x+ 400;
         }
         x=10;
@@ -35,27 +66,30 @@ function drawAnswers(){
 function drawBgImg() {
     let bgImg = new Image();
     bgImg.src = 'BusinessIntelligence.jpg';
-    
-    bgImg.onload = () => {
-        ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-    }
+    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 }
 
 function drawFrame(frameX, frameY, canvasX, canvasY) {
     if(positionX > canvas.width - SCALED_WIDTH){
         positionX = canvas.width - SCALED_WIDTH
+        return false;
     }
     if(positionY > canvas.height - SCALED_HEIGHT){
         positionY = canvas.height - SCALED_HEIGHT
+        return false;
     }
     if(positionX < 0){
         positionX = 0
+        return false;
     }
-    if(positionY < ANSWER_SIZE + SCALED_HEIGHT){
+    if(positionY < ANSWER_SIZE){
+        correctAnswer()
         positionY = 850
         keyUpListener(keyPresses.w)
-        window.location.reload();
-        return;
+        keyPresses=[]
+        alert(questioncount)
+        questioncount = questioncount + 1;
+        return true;
     }
     ctx.drawImage(img,
         frameX * WIDTH, frameY * HEIGHT, WIDTH, HEIGHT,
@@ -95,8 +129,23 @@ function gameLoop() {
     } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
     }
-    drawBgImg()
-    drawAnswers()
-    drawFrame(0, 0, positionX, positionY);
-    window.requestAnimationFrame(gameLoop);
+    if(questioncount < 4) {
+        drawBgImg()
+        drawAnswers()
+        let won = drawFrame(0, 0, positionX, positionY);
+        if (won === true) {
+            Points = Points + 1;
+            window.requestAnimationFrame(gameLoop);
+        } else {
+            window.requestAnimationFrame(gameLoop);
+        }
+    }
+    else {	
+        let Points2 = Points.toString()
+        alert(Points2)
+        sessionStorage.setItem("Points", Points2)
+        document.cookie = "Points" + "=" + Points2 + "; " + ";localhost=;path=/";
+        window.location.replace("/LeaderboardEntry");
+        return;
+    }
 }
