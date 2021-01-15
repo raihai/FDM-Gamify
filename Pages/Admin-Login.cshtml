@@ -21,7 +21,7 @@
         <input type="text" id="Password" name="Password"><br>
         <input type="submit" value="Log In">
     </form>
-    <p style="display: none" ID="Error">Incorrect login details please try again.</p>
+    <p>@HttpContext.Session.Get("ErrorMessage").ToString()</p>
 </div>
 </body>
 </html>

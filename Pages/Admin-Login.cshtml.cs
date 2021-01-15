@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -21,7 +22,7 @@ namespace fdm_gamify2.Pages
             }
             else
             {
-                
+                HttpContext.Session.Set("ErrorOutput", Encoding.ASCII.GetBytes("Error"));
             }
             return "";
         }
