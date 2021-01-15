@@ -31,7 +31,7 @@ namespace fdm_gamify2.Pages
             }
             else
             {
-                Response.Redirect("./Error.cshtml");
+                Response.Redirect("./Error");
             }
         }
 
