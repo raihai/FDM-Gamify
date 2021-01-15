@@ -1,5 +1,6 @@
 @page
 @using Microsoft.AspNetCore.Http
+@using System.Xml.Linq
 @model fdm_gamify2.Pages.GameTest
 
 @{
@@ -10,18 +11,29 @@
 
 <!DOCTYPE html>
 <link rel="stylesheet" href="css/game.css">
+<div id="game">
+	<div class="header">
+		<h1>FlappyStar</h1>
+		<p id="question"></p>
+		<p id="points"> </p>
+	</div>
+	<canvas width="1200" height="1000" >
+	</canvas>
+</div>
 
-<canvas width="1200" height="1000" >
 
-</canvas>
+
 <div id="Adata" style="display: none">
-	@sessionManager.toString(HttpContext.Session.Get("A"))
 </div>
 <div id="Bdata" style="display: none">
-	@sessionManager.toString(HttpContext.Session.Get("B"))
 </div>
 <div id="Cdata" style="display: none">
-	@sessionManager.toString(HttpContext.Session.Get("C"))
 </div>
+<div id="Answer" style="display: none" data-value="@sessionManager.toString(HttpContext.Session.Get("A"))">
+	
+</div>
+<script type="text/javascript" src="js/QuizQuestions.js"></script>
+<script type='text/javascript' src='js/FlappyStar.js'></script>
 
-<script type='text/javascript' src='js/FlappyStar.js'></script> 
+
+

@@ -3,11 +3,9 @@
 async function getData(){
     const response = await  fetch('quizQuestionTest.csv');
     const data = await response.text()
-    
     const rows = data.split('\n').slice(1);
     rows.forEach( element => {
         const row = element.split(',').toLocaleString();
-        
         const que = row[0];
         const option1 = row[1];
         const option2 = row[2];
@@ -20,7 +18,7 @@ async function getData(){
             questions = [
                 {
                     numb: i,
-                    questions: que,
+                    questions: option1,
                     answer: ans,
                     options: [
                         option1,
@@ -31,7 +29,7 @@ async function getData(){
             ];
         
     }
-    
+
     )
 }
 
@@ -39,12 +37,12 @@ async function getData(){
 let questions = [
     {
         numb: 1,
-        question: "first question?",
+        question: "row",
         answer: "correct answer",
         options: [
-            "incorrect answer",
-            "correct answer",
-            "incorrect answer",
+            "1",
+            "2",
+            "3",
             
         ]
     },
@@ -91,3 +89,4 @@ let questions = [
     },
    
 ];
+getData()

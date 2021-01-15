@@ -4,6 +4,7 @@ using System.Data.SqlClient;
  using System.IO;
  using System.Linq;
  using System.Net;
+ using System.Net.Sockets;
  using System.Text;
  using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.SignalR;
@@ -52,6 +53,10 @@ namespace fdm_gamify2
         public void CloseConnection()
         {
             _connection.Close();
+            foreach (var ports in _client.ForwardedPorts)
+            {
+                ports.Stop();
+            }
         }
 
         // executes a given query
@@ -78,20 +83,6 @@ namespace fdm_gamify2
             DataSet dataSet = new DataSet();
             adapter.Fill(dataSet);
             return dataSet.Tables[0];
-
-            
-            /*Console.Write(Connection.Database);
-            DataTable dt = new DataTable();
-            MySqlCommand cmd = Connection.CreateCommand();
-            cmd.CommandText = query;
-            cmd.CommandType = CommandType.Text;
-            using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-            {
-                Console.WriteLine(dt);
-                da.Fill(dt);
-            }
-
-            return dt;*/
         }
 
         /*

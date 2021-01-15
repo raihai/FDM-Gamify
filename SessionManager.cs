@@ -52,10 +52,11 @@ namespace fdm_gamify2
             foreach (FieldInfo field in fileReader.GetType().GetFields())
             {
                 // reads the question and answers from the line using the count
-                byte[] FieldValueByte = toByte(field);
+                byte[] FieldValueByte = FieldtoByte(field);
                 if (FieldValueByte != null)
                 {
                     context.Session.Set(field.Name, FieldValueByte);
+                    Console.WriteLine(field.Name);
                 }
 
             }
@@ -75,7 +76,7 @@ namespace fdm_gamify2
         /*
          * All functions below here are for switching between data types in and out of the page 
          */
-        public static byte[] toByte(FieldInfo field)
+        public static byte[] FieldtoByte(FieldInfo field)
         {
             string a = "a";
             int b = 1;
@@ -116,6 +117,29 @@ namespace fdm_gamify2
             return -1;
         }
 
+        public byte[] stringToByte(string String)
+        {
+            byte[] bytes = Encoding.ASCII.GetBytes(String);
+            return bytes;
+        }
+
+        public bool newUser(string nickname, int points)
+        {
+            DatabaseConnection db = new DatabaseConnection();
+            db.OpenConnection();
+            Console.WriteLine("-----------------------------------------------------------------");
+            Console.WriteLine(nickname);
+            string query = "Insert into SoftwareTestingQuiz VALUES(null,''" + nickname + "'," + points + ")";
+            Console.WriteLine(query + "------------------------");
+            db.ExecuteQuery("Insert into SoftwareTestingQuiz VALUES(null,"+"'"+ nickname +"',"+ points+")");
+            return true;
+        }
+        public void setString(string name, string value, HttpContext context)
+        {
+            byte[] valuebyte = stringToByte(value);
+            context.Session.Set(name, valuebyte);
+        }
     }
+
 }
 

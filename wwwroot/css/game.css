@@ -24,4 +24,20 @@
 }
 canvas {
     border: 1px solid black;
+    background-size: 100% 100%;
+}
+#game {
+    width: 0px;
+    height:100px;
+    margin-left: 1000px;
+    border: 1px solid red;
+    background-size: 100% 100%;
+}
+.header {
+    width: 1200px;
+    padding: 50px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
 }
