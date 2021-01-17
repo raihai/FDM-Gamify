@@ -23,7 +23,8 @@ namespace fdm_gamify2.Pages
 	
         public void OnGet()
         {
-
+            SessionManager session = new SessionManager();
+            session.NewUser(HttpContext, session, "false");
         }
     }
 }

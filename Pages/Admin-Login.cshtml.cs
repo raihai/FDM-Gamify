@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using System;
+using System.Net.Http;
+using System.Text;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace fdm_gamify2.Pages
 {
@@ -9,7 +13,7 @@ namespace fdm_gamify2.Pages
             
         }
 
-        public void Login()
+        public static String Login(HttpContext HttpContext, HttpResponse Response)
         {
             AdminLogin adminLogin = new AdminLogin();
             if (adminLogin.Login(HttpContext))
@@ -18,8 +22,9 @@ namespace fdm_gamify2.Pages
             }
             else
             {
-                //output failed to login message
+                HttpContext.Session.Set("ErrorOutput", Encoding.ASCII.GetBytes("Error"));
             }
+            return "";
         }
     }
 }

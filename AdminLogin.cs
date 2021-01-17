@@ -12,6 +12,7 @@ namespace fdm_gamify2
     {
         public Boolean Login(HttpContext httpContext)
         {
+            
             String Username = "";
             String Password = "";
             DatabaseConnection databaseConnection = new DatabaseConnection();
@@ -23,9 +24,11 @@ namespace fdm_gamify2
                 {
                     SessionManager session = new SessionManager();
                     session.NewUser(httpContext, session, "true");
+                    databaseConnection.CloseConnection();
                     return true;
                 }
             }
+            databaseConnection.CloseConnection();
             return false;
         }
     }

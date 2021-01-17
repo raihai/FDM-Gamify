@@ -2,7 +2,7 @@
 using System.Data;
 using System.Net;
 using System.Text;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
@@ -13,34 +13,26 @@ namespace fdm_gamify2.Pages
     {
         public void OnGet()
         {
-            
-            Cookie cookie= new Cookie();
-            CookieContainer jar = new CookieContainer();
-            cookie.Value = "Admin";
-            Uri uri = new Uri("https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0");
-            cookie.Domain = "https://docs.microsoft.com/en-us/dotnet/api/system.net.cookiecontainer?view=net-5.0";
-            cookie.Name = "UserType";
-            /*jar.Add(cookie);*/
-            /*Console.Out.WriteLine(jar.GetCookies(uri));*/
-            /*//if(Request.Cookies)
+            if (HttpContext.Session.Get("IsAdmin").ToString() == "true")
             {
-               //     Response.Redirect("/error");
-               //      return;
-            }*/
-            // check that the admin has logged in to access this page if not it redirects them to an error page
-            DatabaseConnection dc = new DatabaseConnection();
-            const string query = "SELECT * FROM Persons";
+                DatabaseConnection dc = new DatabaseConnection();
+                const string query = "SELECT * FROM Persons";
             
-            // open connection to database and gets a datatable from above query
-            dc.OpenConnection();
-            DataTable dt = dc.GetDataTable(query);
+                // open connection to database and gets a datatable from above query
+                dc.OpenConnection();
+                DataTable dt = dc.GetDataTable(query);
 
-            // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
-            string htmlBody = ConvertDataTableToHtml(dt);
-            System.IO.File.WriteAllText(@"AdminTable.html", htmlBody);
+                // retrieves new html body created from datatable and writes it to Leaderboard.cshtml
+                string htmlBody = ConvertDataTableToHtml(dt);
+                System.IO.File.WriteAllText(@"AdminTable.html", htmlBody);
             
-            // closes connection to the database
-            dc.CloseConnection();
+                // closes connection to the database
+                dc.CloseConnection();
+            }
+            else
+            {
+                Response.Redirect("./Error");
+            }
         }
 
         [HttpPost]
