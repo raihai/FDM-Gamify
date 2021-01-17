@@ -3,8 +3,6 @@
 @model fdm_gamify2.Pages.QuizModel
 @{
 	ViewData["Title"] = "Quiz";
-	SessionManager sessionManager = new SessionManager();
-	sessionManager.QuizSetUp( HttpContext, new FileReader(),"quizQuestionTest.csv");
 }
 
 
@@ -77,7 +75,7 @@
     <script type='text/javascript' src='js/QuizQuestions.js'></script>
     
     <!-- JS file for the quiz -->
-    <script type='text/javascript' src='js/Quiz.js'></script> 
+    <script type='text/javascript' src='js/Quiz1.js'></script> 
     
     
 
