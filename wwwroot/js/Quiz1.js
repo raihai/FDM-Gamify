@@ -1,5 +1,4 @@
-﻿
-window.onload  = startGame();
+﻿window.onload  = startGame();
 const quest = [];
 const option1 = [];
 const option2 =[];
@@ -108,7 +107,8 @@ async function startGame() {
         showQuetions(0); //calling showQestions function
         queCounter(1); //passing 1 parameter to queCounter
         startTimer(12); //calling startTimer function
-        startTimerLine(0); //calling startTimerLine function
+        startTimerLine(0); //calling startTimerLine function#
+
     }
 
     let timeValue = 12;
@@ -132,14 +132,18 @@ async function startGame() {
         userScore = 0;
         widthValue = 0;
         showQuetions(que_count); //calling showQestions function
-        
+
         queCounter(que_numb); //passing que_numb value to queCounter
         clearInterval(counter); //clear counter
         clearInterval(counterLine); //clear counterLine
         startTimer(timeValue); //calling startTimer function
+
         startTimerLine(widthValue); //calling startTimerLine function
+
         timeText.textContent = "Time Left"; //change the text of timeText to Time Left
+
         next_btn.classList.remove("show"); //hide the next button
+
     }
 
 // if quitQuiz button clicked
@@ -169,51 +173,16 @@ async function startGame() {
             showResult(); //calling showResult function
         }
     }
-
-// getting questions and options from array
-    function showQuetions(index) {
-      
-        const que_text = document.querySelector(".que_text");
-
-        //creating a new span and div tag for question and option and passing the value using array index
-        let que_tag = '<span>' + questions[index].numb + ". " + questions[index].questions + '</span>';
-        let option_tag = '<div class="option"><span>' + questions[index].options[0] + '</span></div>'
-            + '<div class="option"><span>' + questions[index].options[1] + '</span></div>'
-            + '<div class="option"><span>' + questions[index].options[2] + '</span></div>';
-        que_text.innerHTML = que_tag; //adding new span tag inside que_tag
-        option_list.innerHTML = option_tag; //adding new div tag inside option_tag
-
-        const option = option_list.querySelectorAll(".option");
-        
-        
-        
-        // set onclick attribute to all available options
-        for (i = 0; i < option.length; i++) {
-            //option[i].set
-            //document.getElementById("option_tag").onclick = optionSelected(option[i]);
-            option[i].setAttribute("onclick", "optionSelected(this);");
-            
-        }
-        
-    }
-
-// creating the new div tags which for icons
-    let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
-    let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
-
-
-    
-
 //if user clicked on option
-     function optionSelected(answer) {
-       
+    function optionSelected(answer) {
+
         clearInterval(counter); //clear counter
         clearInterval(counterLine); //clear counterLine
         let userAns = answer.textContent; //getting user selected option
         let correcAns = questions[que_count].answer; //getting correct answer from array
         const allOptions = option_list.children.length; //getting all option items
 
-        if (userAns == correcAns) { //if user selected option is equal to array's correct answer
+        if (userAns === correcAns) { //if user selected option is equal to array's correct answer
             userScore += 1; //upgrading score value with 1
             answer.classList.add("correct"); //adding green color to correct selected option
             answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
@@ -236,8 +205,43 @@ async function startGame() {
             option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
         }
         next_btn.classList.add("show"); //show the next button if user selected any option
-        
+
     }
+    function test(){
+        alert("in")
+    }
+// getting questions and options from array
+    function showQuetions(index) {
+      
+        const que_text = document.querySelector(".que_text");
+
+        //creating a new span and div tag for question and option and passing the value using array index
+        let que_tag = '<span>' + questions[index].numb + ". " + questions[index].questions + '</span>';
+        let option_tag = '<div class="option" id="question1"><span>' + questions[index].options[0] + '</span></div>'
+            + '<div class="option" id="question2"><span>' + questions[index].options[1] + '</span></div>'
+            + '<div class="option " id="question3"><span>' + questions[index].options[2] + '</span></div>';
+        que_text.innerHTML = que_tag; //adding new span tag inside que_tag
+        option_list.innerHTML = option_tag; //adding new div tag inside option_tag
+
+        const option = option_list.querySelectorAll(".option");
+        
+        
+        
+        // set onclick attribute to all available options
+        for (i = 0; i < option.length; i++) {
+            //option[i].set
+            //document.getElementById("option_tag").onclick = optionSelected(option[i]);
+            document.getElementById(option[i].id).onclick = function(){ optionSelected(document.getElementById("question"+i));}
+        }
+    }
+
+// creating the new div tags which for icons
+    let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
+    let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+
+
+    
+
 
     function showResult() {
         rule_box.classList.remove("activeRule"); //hide rule box
@@ -285,6 +289,7 @@ async function startGame() {
                 next_btn.classList.add("show"); //show the next button if user selected any option
             }
         }
+
     }
 
     function startTimerLine(time) {
