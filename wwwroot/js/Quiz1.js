@@ -75,6 +75,7 @@ async function startGame() {
             ]
         },
         
+        
     ];
 
 
@@ -173,43 +174,7 @@ async function startGame() {
             showResult(); //calling showResult function
         }
     }
-//if user clicked on option
-    function optionSelected(answer) {
 
-        clearInterval(counter); //clear counter
-        clearInterval(counterLine); //clear counterLine
-        let userAns = answer.textContent; //getting user selected option
-        let correcAns = questions[que_count].answer; //getting correct answer from array
-        const allOptions = option_list.children.length; //getting all option items
-
-        if (userAns === correcAns) { //if user selected option is equal to array's correct answer
-            userScore += 1; //upgrading score value with 1
-            answer.classList.add("correct"); //adding green color to correct selected option
-            answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
-            console.log("Correct Answer");
-            console.log("Your correct answers = " + userScore);
-        } else {
-            answer.classList.add("incorrect"); //adding red color to correct selected option
-            answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
-            console.log("Wrong Answer");
-
-            for (i = 0; i < allOptions; i++) {
-                if (option_list.children[i].textContent == correcAns) { //if there is an option which is matched to an array answer 
-                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
-                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
-                    console.log("Auto selected correct answer.");
-                }
-            }
-        }
-        for (i = 0; i < allOptions; i++) {
-            option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
-        }
-        next_btn.classList.add("show"); //show the next button if user selected any option
-
-    }
-    function test(){
-        alert("in")
-    }
 // getting questions and options from array
     function showQuetions(index) {
       
@@ -229,9 +194,10 @@ async function startGame() {
         
         // set onclick attribute to all available options
         for (i = 0; i < option.length; i++) {
-            //option[i].set
-            //document.getElementById("option_tag").onclick = optionSelected(option[i]);
-            document.getElementById(option[i].id).onclick = function(){ optionSelected(document.getElementById("question"+i));}
+           
+            document.getElementById(option[i].id).onclick = function(){ optionSelected(this);}
+            
+            //document.getElementById(option[i].id).onclick = function(){ optionSelected(document.getElementById("question"+i));}
         }
     }
 
@@ -239,8 +205,71 @@ async function startGame() {
     let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
     let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
-
     
+    
+    //if user clicked on option
+    function optionSelected(answer) {
+
+        clearInterval(counter); //clear counter
+        clearInterval(counterLine); //clear counterLine
+        let userAns = answer.textContent; //getting user selected option
+        console.log(userAns);
+        let correcAns = questions[que_count].answer.replace(/[^\x20-\x7E]/g, ''); //getting correct answer from array
+        console.log(correcAns);
+        const allOptions = option_list.children.length; //getting all option items
+
+        console.log(allOptions);
+        
+        
+        console.log(correcAns.charCodeAt(0))
+        console.log(correcAns.charCodeAt(1))
+        console.log(correcAns.charCodeAt(2))
+        console.log(correcAns.charCodeAt(3))
+        console.log(correcAns.charCodeAt(4))
+        console.log(correcAns.charCodeAt(5))
+        console.log(correcAns.charCodeAt(6))
+        
+        console.log(userAns.charCodeAt(0))
+        console.log(userAns.charCodeAt(1))
+        console.log(userAns.charCodeAt(2))
+        console.log(userAns.charCodeAt(3))
+        console.log(userAns.charCodeAt(4))
+        console.log(userAns.charCodeAt(5))
+
+        console.log("corect answer: ", correcAns)
+        console.log("user Answer: ", userAns)
+        console.log("type of user Answer", typeof userAns)
+        console.log("type of correct Answer", typeof correcAns)
+        
+        
+
+        if(userAns == correcAns){ //if user selected option is equal to array's correct answer
+            userScore += 1; //upgrading score value with 1
+            answer.classList.add("correct"); //adding green color to correct selected option
+            answer.insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to correct selected option
+            console.log("Correct Answer");
+            console.log("Your correct answers = " + userScore);
+        }else{
+            answer.classList.add("incorrect"); //adding red color to correct selected option
+            answer.insertAdjacentHTML("beforeend", crossIconTag); //adding cross icon to correct selected option
+            console.log("Wrong Answer");
+
+            for(i=0; i < allOptions; i++){
+                if(option_list.children[i].textContent == correcAns){ //if there is an option which is matched to an array answer 
+                    option_list.children[i].setAttribute("class", "option correct"); //adding green color to matched option
+                    option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); //adding tick icon to matched option
+                    console.log("Auto selected correct answer.");
+                }
+            }
+        }
+        for(i=0; i < allOptions; i++){
+            option_list.children[i].classList.add("disabled"); //once user select an option then disabled all options
+        }
+        next_btn.classList.add("show"); //show the next button if user selected any option
+    }
+    function test(){
+        alert("in")
+    }
 
 
     function showResult() {
