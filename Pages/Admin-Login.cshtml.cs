@@ -25,13 +25,13 @@ namespace fdm_gamify2.Pages
             //Console.Out.WriteLine(Password);
             
             AdminLogin adminLogin = new AdminLogin();
-            if (adminLogin.Login(HttpContext))
+            if (adminLogin.Login(HttpContext, Username, Password))
             {
                 Response.Redirect("./Admin.cshtml");
             }
             else
             {
-                HttpContext.Session.Set("ErrorMessage", Encoding.ASCII.GetBytes("Incorrect login details please try again"));
+                HttpContext.Session.Set("ErrorMessage", Encoding.ASCII.GetBytes("Incorrect login details please try again."));
             }
             return;
         }
