@@ -14,14 +14,14 @@
 </head>
 <body>
 <div>
-    <form name="LoginDetails" onsubmit="@Admin_Login.Login(HttpContext, HttpContext.Response)">
+    <form name="LoginDetails" method="post">
         <label for="Username">Username:</label><br>
         <input type="text" id="Username" name="Username"><br>
         <label for="Password">Password:</label><br>
         <input type="text" id="Password" name="Password"><br>
         <input type="submit" value="Log In">
     </form>
-    <p>@HttpContext.Session.Get("ErrorMessage").ToString()</p>
+    <p>@System.Text.Encoding.Default.GetString(HttpContext.Session.Get("ErrorMessage"))</p>
 </div>
 </body>
 </html>

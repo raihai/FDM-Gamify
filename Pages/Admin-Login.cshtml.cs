@@ -13,7 +13,7 @@ namespace fdm_gamify2.Pages
             
         }
 
-        public static String Login(HttpContext HttpContext, HttpResponse Response)
+        public async void OnPost()
         {
             AdminLogin adminLogin = new AdminLogin();
             if (adminLogin.Login(HttpContext))
@@ -22,9 +22,9 @@ namespace fdm_gamify2.Pages
             }
             else
             {
-                HttpContext.Session.Set("ErrorOutput", Encoding.ASCII.GetBytes("Error"));
+                HttpContext.Session.Set("ErrorMessage", Encoding.ASCII.GetBytes("Incorrect login details please try again"));
             }
-            return "";
+            return;
         }
     }
 }

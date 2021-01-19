@@ -13,7 +13,7 @@ namespace fdm_gamify2.Pages
     {
         public void OnGet()
         {
-            if (HttpContext.Session.Get("IsAdmin").ToString() == "true")
+            if (System.Text.Encoding.Default.GetString(HttpContext.Session.Get("IsAdmin")) == "true")
             {
                 DatabaseConnection dc = new DatabaseConnection();
                 const string query = "SELECT * FROM Persons";
