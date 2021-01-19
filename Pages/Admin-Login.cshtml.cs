@@ -15,6 +15,15 @@ namespace fdm_gamify2.Pages
 
         public async void OnPost()
         {
+            //fetch form data
+
+            string Username = HttpContext.Request.Form["Username"];
+            string Password = HttpContext.Request.Form["Password"];
+            
+            //Test that you get form data
+            //Console.Out.WriteLine(Username);
+            //Console.Out.WriteLine(Password);
+            
             AdminLogin adminLogin = new AdminLogin();
             if (adminLogin.Login(HttpContext))
             {
