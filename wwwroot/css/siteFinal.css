@@ -369,14 +369,106 @@ html {
   min-height: 100%;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+
+.fdm-footer {
+  background-color: #202025;
+  max-height: 100%;
+  padding: 60px 0;
+  color: #fff;
+  border-bottom: 10px solid #1daded;
 }
-.footer {
+.fdm-footer .row {
+  background-color: #202025;
+}
+.container {
+  margin: 0 auto;
+}
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.fdm-footer .row .footer-btn {
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+}
+
+.fdm-footer .row .footer-menu {
+  -webkit-columns: 3 20px;
+  -moz-columns: 3 20px;
+  columns: 3 20px;
+  -webkit-column-gap: 1em;
+  -moz-column-gap: 1em;
+  column-gap: 1em;
+  line-height: 30px;
+}
+.fdm-footer .row .social {
+  padding: 5px;
+  float: right;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+address, blockquote, dl, fieldset, ol, p, pre, table, ul {
+  margin: 0 0 1.5rem;
+}
+.fdm-footer .row #right ul.icon-effect {
+  padding-bottom: 20px;
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  padding-left: 0;
+}
+
+.fdm-footer .row #right ul.icon-effect li {
+  list-style: none;
+  float: left;
+  margin: 3px;
+  width: 40px;
+  height: 40px;
+  font-size: 27px;
+  text-align: center;
+  border-radius: 50%;
+}
+.fdm-footer .row #right ul.icon-effect a {
+  color: #fff;
+}
+svg:not(:root).svg-inline--fa {
+  overflow: visible;
+}
+
+.svg-inline--fa.fa-w-10 {
+   width: .625em;
+ }
+
+.svg-inline--fa {
+   display: inline-block;
+   font-size: inherit;
+   height: 1em;
+   overflow: visible;
+   vertical-align: -.125em;
+ }
+.fdm-footer .row .social .copyright {
+  top: 65px;
+  position: absolute;
+  right: 65px;
+  font-size: 12px;
+}
+
+a.btn-grad-footer, button.btn-grad-footer {
+  background: #1541c8;
+  background: linear-gradient(40deg,#1541c8 0,#8820bb 100%);
+  text-decoration: none;
+  border-radius: 50px;
+  color: #fff;
+  padding: 10px 50px;
+  font-weight: 700;
+  display: inline-block;
 }
