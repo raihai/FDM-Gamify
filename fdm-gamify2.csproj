@@ -23,4 +23,10 @@
     <None Include="wwwroot\space.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Pages\LeaderboardEntry.cshtml.cs">
+      <DependentUpon>LeaderboardEntry.cshtml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>

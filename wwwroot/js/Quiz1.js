@@ -74,7 +74,7 @@ async function startGame() {
                 option3[3]
             ]
         },
-        
+        alert("started game")
         
     ];
 

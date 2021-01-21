@@ -1,0 +1,35 @@
+@page
+@using Microsoft.AspNetCore.Http
+@model fdm_gamify2.Pages.LeaderboardEntry
+
+@{
+    Console.WriteLine("Cookie data");
+    
+    Console.WriteLine(HttpContext.Request.Cookies.Keys);
+    foreach (var key in HttpContext.Request.Cookies.Keys)
+    {
+        Console.WriteLine(key);
+        Console.WriteLine(HttpContext.Request.Cookies[key]);
+    }
+    //ViewData["Title"] = "Astra";
+    SessionManager sessionManager = new SessionManager();
+    //Console.WriteLine(sessionManager.toString(HttpContext.Session.Get("Points")));
+    //Console.WriteLine("leaderboard");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<div id="submission" >
+    <form method="post">
+        <input type="text" id="nickname" name="nickname">
+        <input type="submit" id="submit">
+    </form>
+</div>
+</body>
+</html>

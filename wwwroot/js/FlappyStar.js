@@ -1,13 +1,9 @@
-let img = new Image();
-img.src = 'Astra2.png';
-img.onload = function() {
-    window.requestAnimationFrame(gameLoop);
-};
+
 
 var i =0;
 var x=10;
 var y=10;
-
+var data = []//[Question1,A,B,C,A]...
 
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
@@ -19,7 +15,24 @@ const SCALED_HEIGHT = SCALE * HEIGHT;
 const ANSWER_SIZE = canvas.height/5;
 let questioncount = 0
 let Points = 0
-
+getCsvData()
+let img = new Image();
+img.src = 'Astra2.png';
+img.onload = function() {
+    window.requestAnimationFrame(gameLoop);
+};
+async function getCsvData(){
+    const response = await  fetch('quizQuestionTest.csv');// get data
+    const filedata = response.text()
+    var splitFile = (await filedata).split("\n")// split by line
+    for (let j = 0; j < splitFile.length; j++) {// each line
+        var line = splitFile[j]// current line
+        var splitline = line.split(",")//split line by comma
+        var array = [splitline[0],splitline[1],splitline[2],splitline[3],splitline[4].replace("\n","")]
+        await data.push(array) // add line to array
+    }
+    return data
+}
 function correctAnswer(){
     console.log(Answer)
     if(Answer == 1) {
@@ -50,15 +63,14 @@ function correctAnswer(){
         }
     }
 function drawAnswers(){
-    getData()
     let imageObj = new Image();
     imageObj.src = "SpaceForGame.png";
-        for (i = 0; i < 4; i++) {
+        for (i = 1; i < 4; i++) {
             ctx.drawImage(imageObj, x , y, canvas.width/3, canvas.height/5);
             ctx.strokeRect(x,y,canvas.width/3,canvas.height/5)
             ctx.font = "40pt Calibri";
-            document.getElementById("question").innerHTML = questions[questioncount].question
-            ctx.fillText(questions[questioncount].options[i],x+ 180,120);
+            document.getElementById("question").innerHTML = data[questioncount][0]
+            ctx.fillText(data[questioncount][i],x+ 180,120);
             x = x+ 400;
         }
         x=10;
