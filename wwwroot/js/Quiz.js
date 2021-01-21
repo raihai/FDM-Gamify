@@ -9,7 +9,7 @@ const ans = [];
 
 
 async function getData(){
-    const response = await  fetch('quizQuestionTest.csv');
+    const response = await  fetch('TechnicalOperation.csv');
     const data = await response.text()
     const rows = data.split('\n');
     rows.forEach( element => {
@@ -43,7 +43,7 @@ async function startGame() {
     const randAns = [];
     
     
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 10; i++) {
         let idx = Math.floor(Math.random() * quest.length);
         randQuest.push(quest[idx]);
         quest.splice(idx, 1);
@@ -96,6 +96,66 @@ async function startGame() {
                 randOption1[3],
                 randOption2[3],
                 randOption3[3]
+            ]
+        },
+        {
+            numb: 5,
+            questions: randQuest[4],
+            answer: randAns[4],
+            options: [
+                randOption1[4],
+                randOption2[4],
+                randOption3[4]
+            ]
+        },
+        {
+            numb: 6,
+            questions: randQuest[5],
+            answer: randAns[5],
+            options: [
+                randOption1[5],
+                randOption2[5],
+                randOption3[5]
+            ]
+        },
+        {
+            numb: 7,
+            questions: randQuest[6],
+            answer: randAns[6],
+            options: [
+                randOption1[6],
+                randOption2[6],
+                randOption3[6]
+            ]
+        },
+        {
+            numb: 8,
+            questions: randQuest[7],
+            answer: randAns[7],
+            options: [
+                randOption1[7],
+                randOption2[7],
+                randOption3[7]
+            ]
+        },
+        {
+            numb: 9,
+            questions: randQuest[8],
+            answer: randAns[8],
+            options: [
+                randOption1[8],
+                randOption2[8],
+                randOption3[8]
+            ]
+        },
+        {
+            numb: 10,
+            questions: randQuest[9],
+            answer: randAns[9],
+            options: [
+                randOption1[9],
+                randOption2[9],
+                randOption3[9]
             ]
         },
         
