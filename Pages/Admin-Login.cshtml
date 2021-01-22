@@ -8,27 +8,40 @@
 
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Admin Login</title>
+    <style>
+        p.logo {
+         float: right;
+         width: 30%;
+         margin: 10%;
+         }
+    </style>
 </head>
-<section class="fdm-header-banner reduced-height">
-    <div class="container h-100 ">
-        <div class="row align-items-center h-100">
-            <form name="LoginDetails" method="post">
+<section class="fdm-header-banner reduced-height ">
+    <h1 itemprop="name" class="banner-heading2 text-center"><span class="font-weight-bold">Admin Login</span></h1><br>
+
+    <div>
+
+        <div style="text-align: left" class="container h-100 ">
+            <div class="row align-items-center h-100">
+                <p class="logo"><img src="Astra3.png"></p>
+                <form name="LoginDetails" method="post">
                     <label for="Username">Username:</label><br>
                     <input type="text" id="Username" div name="Username"><br>
                     <label for="Password">Password:</label><br>
                     <input type="password" id="Password" div name="Password"><br>
                     <input type="submit" value="Log In">
-            </form>
-            <p>@System.Text.Encoding.Default.GetString(HttpContext.Session.Get("ErrorMessage"))</p>
+                </form>
+                <p>@System.Text.Encoding.Default.GetString(HttpContext.Session.Get("ErrorMessage"))</p>
+            </div>
         </div>
     </div>
 </section>
 <body>
 <div>
-    
+
 </div>
 </body>
 </html>
