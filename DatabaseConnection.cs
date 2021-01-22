@@ -69,6 +69,14 @@ namespace fdm_gamify2
             cmd.ExecuteNonQuery();
         }
 
+        public void NewAdmin(Byte[] Username, Byte[] Password)
+        {
+            MySqlCommand cmd = new MySqlCommand("Insert into AdminUsers(Username, Password) SET Username = @Username AND Password = @Password" , _connection);
+            cmd.Parameters.Add("@Username", MySqlDbType.Blob).Value = Username;
+            cmd.Parameters.Add("@Password", MySqlDbType.Blob).Value = Password;
+            cmd.ExecuteNonQuery();
+        }
+
         // reads forward-only stream of rows database
         public MySqlDataReader DataReader(string query)
         {
