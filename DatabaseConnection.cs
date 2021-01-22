@@ -6,6 +6,7 @@ using System.Data.SqlClient;
  using System.Net;
  using System.Net.Sockets;
  using System.Text;
+ using Google.Protobuf.WellKnownTypes;
  using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.SignalR;
 using MySql.Data.MySqlClient;
