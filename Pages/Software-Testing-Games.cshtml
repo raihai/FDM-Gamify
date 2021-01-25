@@ -3,6 +3,7 @@
 @model STGModel
 @{
     ViewData["Title"] = "Software Testing Games";
+	SessionManager sessionManager = new SessionManager();
 }
 
 <section class="fdm-header-banner reduced-height2 ">
@@ -34,7 +35,7 @@
           	
 						<div class="logo-wrapper">
 							<a href="./Astra-Game">
-                				<img src="astraGAME.png" alt="" onclick= sessionStorage.setItem("fileName","SoftwareTesting.csv")>
+                				<img src="astraGAME.png" alt="" onclick="@SessionManager.quizFileSetter("quizQuestionTest.csv", HttpContext)">
 							</a>
 						</div>
 						<div class="subtitle">
@@ -48,7 +49,7 @@
           	
 						<div class="logo-wrapper">
 							<a href="./Quiz-Game">
-                				<img src="quizGAME.png" alt="" onclick="@SessionManager.quizFileSetter("SoftwareTesting.csv", HttpContext)">
+                				<img src="quizGAME.png" alt="" onclick="@SessionManager.quizFileSetter("quizQuestionTest.csv", HttpContext)">
 							</a>
 						</div>
 						<div class="subtitle">

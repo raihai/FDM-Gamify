@@ -1,14 +1,16 @@
-﻿window.onload  = startGame();
+﻿let fileNa = document.getElementById("filename").textContent
+alert(fileNa)
+window.onload  = startGame();
 const quest = [];
 const option1 = [];
 const option2 =[];
 const option3 = [];
 const ans = [];
 
-let fileNa = sessionStorage.getItem("fileName");
+//let fileNa = sessionStorage.getItem("fileName");
 
 async function getData(){
-    const response = await  fetch("Business.csv");
+    const response = await fetch(fileNa);
     const data = await response.text()
     const rows = data.split('\n');
     rows.forEach( element => {

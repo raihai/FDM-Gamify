@@ -3,7 +3,7 @@
 @model fdm_gamify2.Pages.QuizModel
 @{
 	ViewData["Title"] = "Quiz";
-
+    SessionManager sessionManager = new SessionManager();
 }
 
 
@@ -12,7 +12,7 @@
 
   
 <section class="secondSelection">
-<!-- start Quiz button -->
+    <!-- start Quiz button -->
     <div class="start_btn"><button>Start Quiz</button></div>
 
     <!-- Rules Box -->
@@ -71,9 +71,12 @@
             <button class="quit">Quit Quiz</button>
         </div>
     </div>
+
 </section>
+<div id="filename" value = @HttpContext.Session.Get("filename")>@sessionManager.toString(HttpContext.Session.Get("FileName"))</div>
 <!-- separate file for questions and answer -->
-    <script type='text/javascript' src='js/QuizQuestions.js'></script>
+<script type='text/javascript' src='js/QuizQuestions.js'>
+</script>
     
     <!-- JS file for the quiz -->
     <script type='text/javascript' src='js/Quiz.js'></script> 

@@ -70,6 +70,7 @@ namespace fdm_gamify2
         {
             context.Session.Set("Count", (BitConverter.GetBytes(0)));// sets the file for the data to be read from. 
             context.Session.Set("FileName", @Encoding.ASCII.GetBytes((filename)));
+            Console.WriteLine(context.Session.Get("FileName"));
             return "";
         }
 

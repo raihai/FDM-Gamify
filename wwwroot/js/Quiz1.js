@@ -8,7 +8,7 @@ const ans = [];
 
 
 async function getData(){
-    const response = await  fetch('quizQuestionTest.csv');
+    const response = await  fetch(filename);
     const data = await response.text()
     const rows = data.split('\n');
     rows.forEach( element => {
