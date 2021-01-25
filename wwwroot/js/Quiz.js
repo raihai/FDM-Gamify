@@ -5,11 +5,10 @@ const option2 =[];
 const option3 = [];
 const ans = [];
 
-
-
+let fileNa = sessionStorage.getItem("fileName");
 
 async function getData(){
-    const response = await  fetch('TechnicalOperation.csv');
+    const response = await  fetch("Business.csv");
     const data = await response.text()
     const rows = data.split('\n');
     rows.forEach( element => {

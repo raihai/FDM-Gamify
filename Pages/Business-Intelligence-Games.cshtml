@@ -34,7 +34,7 @@
           	
 						<div class="logo-wrapper">
 							<a href="./Astra-Game">
-                				<img src="astraGAME.png" alt=""  onclick="@SessionManager.quizFileSetter("Business.csv", HttpContext)">
+                				<img src="astraGAME.png" alt=""  onclick= sessionStorage.setItem("fileName","Business.csv")>
 							</a>
 						</div>
 						<div class="subtitle">
@@ -48,7 +48,7 @@
           	
 						<div class="logo-wrapper">
 							<a href="./Quiz-Game">
-                				<img src="quizGAME.png" alt="">
+                				<img src="quizGAME.png" alt="" onclick="@SessionManager.quizFileSetter("Business.csv", HttpContext)">
 							</a>
 						</div>
 						<div class="subtitle">
