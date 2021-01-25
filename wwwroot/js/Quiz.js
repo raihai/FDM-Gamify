@@ -233,7 +233,10 @@ async function startGame() {
 
 // if quitQuiz button clicked
     quit_quiz.onclick = () => {
-        window.location.reload(); //reload the current window
+        let Points = userScore.toString()
+
+        sessionStorage.setItem("Points", Points) // storing user score as a session
+        window.location.replace("/LeaderboardEntry"); //load LeaderboardEntry Page with the points
     }
 
     const next_btn = document.querySelector("footer .next_btn");
@@ -304,21 +307,6 @@ async function startGame() {
 
         console.log(allOptions);
         
-        
-        console.log(correcAns.charCodeAt(0))
-        console.log(correcAns.charCodeAt(1))
-        console.log(correcAns.charCodeAt(2))
-        console.log(correcAns.charCodeAt(3))
-        console.log(correcAns.charCodeAt(4))
-        console.log(correcAns.charCodeAt(5))
-        console.log(correcAns.charCodeAt(6))
-        
-        console.log(userAns.charCodeAt(0))
-        console.log(userAns.charCodeAt(1))
-        console.log(userAns.charCodeAt(2))
-        console.log(userAns.charCodeAt(3))
-        console.log(userAns.charCodeAt(4))
-        console.log(userAns.charCodeAt(5))
 
         console.log("corect answer: ", correcAns)
         console.log("user Answer: ", userAns)
