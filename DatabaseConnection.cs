@@ -71,7 +71,7 @@ namespace fdm_gamify2
 
         public void NewAdmin(Byte[] Username, Byte[] Password)
         {
-            MySqlCommand cmd = new MySqlCommand("Insert into AdminUsers(Username, Password) SET Username = @Username AND Password = @Password" , _connection);
+            MySqlCommand cmd = new MySqlCommand("Insert into AdminUsers SET Username = @Username, Password = @Password", _connection);
             cmd.Parameters.Add("@Username", MySqlDbType.Blob).Value = Username;
             cmd.Parameters.Add("@Password", MySqlDbType.Blob).Value = Password;
             cmd.ExecuteNonQuery();
