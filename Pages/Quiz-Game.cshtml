@@ -4,6 +4,10 @@
 @{
 	ViewData["Title"] = "Quiz";
     SessionManager sessionManager = new SessionManager();
+    if (HttpContext.Session.Get("filename") == null)
+    {
+        Response.Redirect("/Branch-Selection");
+    }
 }
 
 

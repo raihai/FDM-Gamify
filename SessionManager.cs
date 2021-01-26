@@ -133,6 +133,7 @@ namespace fdm_gamify2
             string query = "Insert into SoftwareTestingQuiz VALUES(null,''" + nickname + "'," + points + ")";
             Console.WriteLine(query + "------------------------");
             db.ExecuteQuery("Insert into SoftwareTestingQuiz VALUES(null,"+"'"+ nickname +"',"+ points+")");
+            db.CloseConnection();
             return true;
         }
         public void setString(string name, string value, HttpContext context)

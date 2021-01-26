@@ -1,4 +1,5 @@
 
+let fileNa = document.getElementById("filename").textContent
 
 var i =0;
 var x=0;
@@ -16,7 +17,8 @@ const ANSWER_SIZE = canvas.height/5;
 let questioncount = 0
 let Points = 0
 var Answer = ""
-
+let img;
+let time;
 const MOVEMENT_SPEED = 5;
 let positionX = 400;
 let positionY = 850;
@@ -31,13 +33,13 @@ let currentDirection = 0;
 let keyPresses = {};
 
 async function getCsvData(){
-    const response = await  fetch('quizQuestionTest.csv');// get data
+    const response = await  fetch(fileNa);// get data
     const filedata = response.text()
     var splitFile = (await filedata).split("\n")// split by line
     for (let j = 0; j < splitFile.length; j++) {// each line
         var line = splitFile[j]// current line
         var splitline = line.split(",")//split line by comma
-        var array = [splitline[0],splitline[1],splitline[2],splitline[3],splitline[4].replace("\n","")]
+        var array = [splitline[0],splitline[1],splitline[2],splitline[3],splitline[4]]
         data.push(array) // add line to array
     }
     return data
@@ -47,13 +49,16 @@ async function getCsvData(){
 })()
 
 alert("pause")
-    
-let img = new Image();
-img.src = 'Astra2-removebg-preview.png';
-var time =  new Date().valueOf()
-img.onload = function() {
-    window.requestAnimationFrame(gameLoop);
-};
+
+function startgame() {
+    img = new Image();
+    img.src = 'Astra2-removebg-preview.png';
+    var time = new Date().valueOf()
+    img.onload = function () {
+        window.requestAnimationFrame(gameLoop);
+    };
+}
+
 
 function correctAnswer(){
 
@@ -84,21 +89,42 @@ function drawAnswers(){
             imageObj.onload = function () {
                 ctx.drawImage(imageObj, x, y, canvas.width / 3, canvas.height / 5);
                 ctx.strokeRect(x, y, canvas.width / 3, canvas.height / 5)
-                ctx.font = "30px Comic Sans ms";
+                ctx.font = "20px Comic Sans ms";
                 ctx.fillStyle = "white"
                 document.getElementById("question").innerHTML = data[questioncount][0]
                 document.getElementById("points").innerHTML = "You have scored " + Points + "/10 points so far"
                 Answer = data[questioncount][4]
-                ctx.fillText(data[questioncount][(x+400)/400], x + 180, 120);
+                text = data[questioncount][(x+400)/400]
+                wrapText(ctx,text,x,ANSWER_SIZE/2,canvas.width/3,20)
                 x = x + 400;
+                alert(text)
                 }
                 imageObj.src = "1200px-Hyades.jpg"
             }
         x= 0;
         }
-        
-function drawBoxes(){
-    
+
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+    var words = text.split(' ');
+    var line = '';
+
+    for(var n = 0; n < words.length; n++) {
+        var testLine = line + words[n] + ' ';
+        var metrics = context.measureText(testLine);
+        var testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+            alert("in if statement")
+            context.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+        }
+        else {
+            line = testLine;
+        }
+
+    }
+    alert("wrapping text")
+    context.fillText(line, x, y);
 }
 function drawBgImg() {
     let bgImg = new Image();
@@ -156,7 +182,7 @@ function gameLoop() {
     } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
     }
-    if(questioncount < 4) {
+    if(questioncount < 1) {
         drawBgImg()
         if (flag === true){
             drawAnswers()
@@ -178,6 +204,7 @@ function gameLoop() {
         sessionStorage.setItem("Points", Points2)
         document.cookie = "Points" + "=" + Points2 + "; " + ";localhost=;path=/";
         window.location.replace("/LeaderboardEntry");
+        document.cookie = "PointsScored="+Points2;
         return;
     }
 }
