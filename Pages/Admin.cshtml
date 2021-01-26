@@ -21,22 +21,38 @@
 
         <br>
         <br>
-    </div>
-    
-    <div>
-        <form method="post">
-            <label for="PersonToDelete" style="color: whitesmoke">Enter ID for user you want to delete</label>
-            <input type="text" name="PersonToDelete" id="PersonToDelete">
-            <input type="submit"><br>
-        </form>
+            
+        <div style="text-align: center; margin: 0 auto">
+            <form method="post">
+                <label for="PersonToDelete" style="color: whitesmoke">Enter ID for user you want to delete</label>
+                <input type="text" name="PersonToDelete" id="PersonToDelete">
+                <input type="submit"><br>
+            </form>
 
-    </div>
-    
-    <div>
+        </div>
+        <br>
+        <br>
+        <div>
             <form action="Admin-Login">
                 <input type="submit" style="background-color: #f8f9fa; display: table; text-align: center; margin: 0 auto" value="Back to Admin Login"/>
             </form><br>
         </div>
+    </div>
+    <div>
+        <form method="post">
+            <select name="tablename" id="tablename" onsubmit="">
+                <option value="Business">Business Intelligence</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
+            </select>
+            <input type="submit" value="Choose table">
+        </form>  
+    </div>
+    <script> function clearIDbox(){
+        document.getElementById("PersonToDelete").innerHTML = "";
+    }</script>
+
     
     
 </section>

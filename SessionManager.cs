@@ -124,15 +124,16 @@ namespace fdm_gamify2
             return bytes;
         }
 
-        public bool newUser(string nickname, int points)
+        public bool newUser(string nickname, int points, string tablename)
         {
             DatabaseConnection db = new DatabaseConnection();
             db.OpenConnection();
             Console.WriteLine("-----------------------------------------------------------------");
             Console.WriteLine(nickname);
-            string query = "Insert into SoftwareTestingQuiz VALUES(null,''" + nickname + "'," + points + ")";
+            Console.WriteLine(tablename);
+            string query = "Insert into tablename (null,''" + nickname + "'," + points + ")";
             Console.WriteLine(query + "------------------------");
-            db.ExecuteQuery("Insert into SoftwareTestingQuiz VALUES(null,"+"'"+ nickname +"',"+ points+")");
+            db.ExecuteQuery("Insert into " + tablename +" VALUES(null,"+"'"+ nickname +"',"+ points+")");
             db.CloseConnection();
             return true;
         }

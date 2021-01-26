@@ -3,6 +3,7 @@ using System.Data;
 using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
@@ -15,8 +16,10 @@ namespace fdm_gamify2.Pages
         {
             if (System.Text.Encoding.Default.GetString(HttpContext.Session.Get("IsAdmin")) == "true")
             {
+                SessionManager sessionManager = new SessionManager();
+                string tablename = sessionManager.toString(HttpContext.Session.Get("tablename"));
                 DatabaseConnection dc = new DatabaseConnection();
-                const string query = "SELECT * FROM Persons";
+                string query = "SELECT playerID,nickname, points FROM " +tablename+" ORDER BY points DESC LIMIT 10";
             
                 // open connection to database and gets a datatable from above query
                 dc.OpenConnection();
@@ -28,6 +31,7 @@ namespace fdm_gamify2.Pages
             
                 // closes connection to the database
                 dc.CloseConnection();
+
             }
             else
             {
@@ -38,14 +42,22 @@ namespace fdm_gamify2.Pages
         [HttpPost]
         public async void OnPost()
         {
+            Console.WriteLine("on post");
+            string tablename = HttpContext.Request.Form["tablename"];
             Console.WriteLine("Reached Delete Method");
             DatabaseConnection dc = new DatabaseConnection();
             dc.OpenConnection();
             string id = HttpContext.Request.Form["PersonToDelete"];
-            string query = $"DELETE FROM Persons WHERE PersonID='{id}'";
-            
+            //string query = "DELETE FROM " + tablename + " WHERE playerID=" + id + ";";
+            string query = $"DELETE FROM {tablename} WHERE playerID='{id}'";
+            Console.WriteLine(tablename);
             dc.ExecuteQuery(query);
+            SessionManager sessionManager = new SessionManager();
+            HttpContext.Session.Set("tablename",sessionManager.stringToByte(tablename));
             dc.CloseConnection();
+            OnGet();
+
+            HttpContext.Response.Redirect(HttpContext.Request.GetDisplayUrl());;
         }
         
          // Converts the datatable to html to be shown on the web page
@@ -83,5 +95,7 @@ namespace fdm_gamify2.Pages
             // returns completed string
             return builder.ToString();
         }
+
+            
     }
 }

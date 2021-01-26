@@ -32,38 +32,37 @@ function myFunction() {
 			<div class="img-text-wrapper">
     			
 				<div class="logo-wrapper">
+				</div>
+				</div>
 					<link rel="stylesheet" href="css/game.css">
-					<div id="game">
-						<div id="test" class="Playable game" style="display: none">
-							<div class="header">
-								<p id="time" class="timer"></p>
-								<h1>FlappyStar</h1>
 
-								<p id="question"></p>
-								<p id="points"> </p>
-							</div>
-							<canvas width="1200" height="1000">
+					<div id="test" class="Playable game" style="display: none">
+						<div class="form">
+							<label>FlappyStar</label><br>
+							<label id="question"></label><br>
+							<label id="points"></label><br>
+							<label id="time" class="timer"></label><br>
+						</div>
+						<div id="game">
+							<canvas width="1200" height="900">
 							</canvas>
 						</div>
 					</div>
 
-						<div id="AstraMenu" class="menu">
-							<img id="menuimage"  height="1000" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Grey_background.jpg/1200px-Grey_background.jpg" alt="snow">
-							<div class="center">
-								<p class="Menutext">Welcome to FDM Astra here we will ask you 10 simple questions with 3 possible awnsers and you move Astra to select your answer with the WASD keys. </p><br>
-								<p class="Menutext">You have 10 seconds to answer each question and then submit your score to the leaderboard! </p><br>
-								<button onclick="myFunction()" class="MenuButton default">Begin</button>
-							</div>
-								
+					<div id="AstraMenu" class="menu">
+						<div class="center">
+							<label>Welcome to FDM Astra here we will ask you 10 simple questions with 3 possible awnsers and you move Astra to select your answer with the WASD keys.</label>
+							<label class="Menutext">You have 10 seconds to answer each question and then submit your score to the leaderboard! </label><br>
+							<button onclick="myFunction()" class="MenuButton default">Begin</button>
 						</div>
+
 					</div>
+				</div>
 
 
 					<script type='text/javascript' src='js/FlappyStar.js'></script>
-
-				</div>
+		
 			</div>
-		</div>
 </section>
 <script>
 

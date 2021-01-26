@@ -27,17 +27,26 @@ canvas {
     background-size: 100% 100%;
 }
 #game {
-    margin-left: 1000px;
-    background-size: 100% 100%;
+    background-position: 50% 30%;
+    position: relative;
+    padding-bottom: 1px;
 }
-.header {
+.form {
+    margin: 0 auto;
     width: 1200px;
-    padding: 50px;
+    height: 250px;
     text-align: center;
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/8/80/Hyades.jpg");
     color: white;
     font-size: 30px;
+    padding-bottom: 10px;
 }
+
+.form label{
+    display: inline-block;
+}
+
+
 .timer{
     text-align: left;
     color: #ff0000;
@@ -53,15 +62,18 @@ canvas {
 
 
 .menu {
-    margin-left: 1000px;
+    height: 1000px;
+    width: 800px;
+    margin: 0 auto;
     position: relative;
     text-align: center;
-    color: white;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Grey_background.jpg/1200px-Grey_background.jpg");
+    border: 1px solid black;
 }
 #menuimage{
-    border: 5px solid black;
+    border: 1px solid;
 }
-.Menutext{
+.menu label{
     font-size: 30px;
     size: 30px;
     color: white;
@@ -87,4 +99,8 @@ canvas {
 
 .default:hover {
     background: #e7e7e7;
+}
+.Playablegame{
+    width: 1200px;
+    margin: 0 auto;
 }

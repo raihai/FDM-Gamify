@@ -48,12 +48,11 @@ async function getCsvData(){
     await getCsvData()
 })()
 
-alert("pause")
 
 function startgame() {
     img = new Image();
     img.src = 'Astra2-removebg-preview.png';
-    var time = new Date().valueOf()
+    time = new Date().valueOf()
     img.onload = function () {
         window.requestAnimationFrame(gameLoop);
     };
@@ -92,12 +91,11 @@ function drawAnswers(){
                 ctx.font = "20px Comic Sans ms";
                 ctx.fillStyle = "white"
                 document.getElementById("question").innerHTML = data[questioncount][0]
-                document.getElementById("points").innerHTML = "You have scored " + Points + "/10 points so far"
+                document.getElementById("points").innerHTML = "You have scored " + Points.toString() + "/10 points so far"
                 Answer = data[questioncount][4]
                 text = data[questioncount][(x+400)/400]
                 wrapText(ctx,text,x,ANSWER_SIZE/2,canvas.width/3,20)
                 x = x + 400;
-                alert(text)
                 }
                 imageObj.src = "1200px-Hyades.jpg"
             }
@@ -113,7 +111,6 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var metrics = context.measureText(testLine);
         var testWidth = metrics.width;
         if (testWidth > maxWidth && n > 0) {
-            alert("in if statement")
             context.fillText(line, x, y);
             line = words[n] + ' ';
             y += lineHeight;
@@ -123,7 +120,6 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
         }
 
     }
-    alert("wrapping text")
     context.fillText(line, x, y);
 }
 function drawBgImg() {
@@ -169,7 +165,7 @@ function keyUpListener(event) {
 }
 
 function gameLoop() {
-    timeplayed = Math.round((new Date().valueOf() - time)/1000)
+    timeplayed = Math.round((new Date().valueOf() - time)/1000).toString()
     document.getElementById("time").innerHTML = timeplayed
     ctx.clearRect(500, 500, canvas.width, canvas.height);
     if (keyPresses.w) {
@@ -182,7 +178,7 @@ function gameLoop() {
     } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
     }
-    if(questioncount < 1) {
+    if(questioncount < 10) {
         drawBgImg()
         if (flag === true){
             drawAnswers()
@@ -205,6 +201,7 @@ function gameLoop() {
         document.cookie = "Points" + "=" + Points2 + "; " + ";localhost=;path=/";
         window.location.replace("/LeaderboardEntry");
         document.cookie = "PointsScored="+Points2;
+        document.cookie = "QuizComplete="+fileNa.slice(0,-4)+ "; " + ";localhost=;path=/";
         return;
     }
 }

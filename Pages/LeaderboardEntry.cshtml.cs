@@ -18,7 +18,7 @@ namespace fdm_gamify2.Pages
         {
             Console.WriteLine("post");
             string Nickname  = HttpContext.Request.Form["nickname"];
-            sessionManager.newUser(Nickname,Int32.Parse(HttpContext.Request.Cookies["Points"]));
+            sessionManager.newUser(Nickname,Int32.Parse(HttpContext.Request.Cookies["Points"]), HttpContext.Request.Cookies["QuizComplete"]);
             HttpContext.Response.Redirect("/Leaderboard");
             
         }

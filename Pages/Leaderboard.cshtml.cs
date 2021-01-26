@@ -15,7 +15,8 @@ namespace fdm_gamify2.Pages
         public void OnGet()
         {
             DatabaseConnection dc = new DatabaseConnection();
-            const string query = "SELECT nickname, points FROM SoftwareTestingQuiz ORDER BY points DESC LIMIT 10";
+            string tablename = HttpContext.Request.Cookies["QuizComplete"];
+            string query = "SELECT nickname, points FROM " + tablename +" ORDER BY points DESC LIMIT 10";
             // open connection to database and gets a datatable from above query
             dc.OpenConnection();
             DataTable dt = dc.GetDataTable(query);
@@ -23,7 +24,7 @@ namespace fdm_gamify2.Pages
             // retrieves new html body created from datatable and writes it to Leaderboard page
             string htmlBody = ConvertDataTableToHtml(dt);
             System.IO.File.WriteAllText(@"leaderboardTable.html", htmlBody);
-            
+             
             // closes connection to the database
             dc.CloseConnection();
         }
