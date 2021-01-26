@@ -6,27 +6,58 @@
 @{
     ViewData["Title"] = "Astra";
 	SessionManager sessionManager = new SessionManager();
-	sessionManager.QuizSetUp( HttpContext, new FileReader(),"test.csv");
 }
-
+<script>
+function myFunction() {
+  var x = document.getElementById("test");
+  var y = document.getElementById("AstraMenu");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none"
+    
+  } else {
+    x.style.display = "none";
+  }
+}</script>
 <section class="fdm-header-banner reduced-height2 ">
-<div  class = "text-center fdm">
-	<h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Astra Game</span></h1><br>
-			<div class="portfolio-item-wrapper">
-            	<div class="img-text-wrapper">
+	<div  class = "text-center fdm">
+		<h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Astra Game</span></h1><br>
+		<div class="portfolio-item-wrapper">
+			<div class="img-text-wrapper">
     			
-	                <div class="logo-wrapper">
-                        <div class="container-custom">
-	                        <form method="post">
-                                <input class="AnswerButton" type="submit" value="@sessionManager.toString(HttpContext.Session.Get("A"))">
-                                <input class="AnswerButton" type="submit" value="@sessionManager.toString(HttpContext.Session.Get("B"))">
-                                <input class="AnswerButton" type="submit" value="@sessionManager.toString(HttpContext.Session.Get("C"))">
-                            </form>
-                            </div>
-	                </div>
-                </div>
-            </div>
-</div>
+				<div class="logo-wrapper">
+					<link rel="stylesheet" href="css/game.css">
+					<div id="game">
+						<div id="test" class="Playable game" style="display: none">
+							<div class="header">
+								<p id="time" class="timer"></p>
+								<h1>FlappyStar</h1>
+
+								<p id="question"></p>
+								<p id="points"> </p>
+							</div>
+							<canvas width="1200" height="1000">
+							</canvas>
+						</div>
+					</div>
+
+						<div id="AstraMenu" class="menu">
+							<img id="menuimage"  height="1000" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Grey_background.jpg/1200px-Grey_background.jpg" alt="snow">
+							<div class="center">
+								<p class="Menutext">Welcome to FDM Astra here we will ask you 10 simple questions with 3 possible awnsers and you move Astra to select your answer with the WASD keys. </p><br>
+								<p class="Menutext">You have 10 seconds to answer each question and then submit your score to the leaderboard! </p><br>
+								<button onclick="myFunction()" class="MenuButton default">Begin</button>
+							</div>
+								
+						</div>
+					</div>
+
+
+					<script type='text/javascript' src='js/FlappyStar.js'></script>
+
+				</div>
+			</div>
+		</div>
 </section>
 <script>
 
