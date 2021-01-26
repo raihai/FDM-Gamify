@@ -1,5 +1,4 @@
 ﻿let fileNa = document.getElementById("filename").textContent
-alert(fileNa)
 window.onload  = startGame();
 const quest = [];
 const option1 = [];
@@ -34,7 +33,6 @@ async function getData(){
 async function startGame() {
     await getData()
     
-    alert("started game")
     
     //randomises the questions
     const randQuest = [];

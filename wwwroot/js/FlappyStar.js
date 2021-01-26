@@ -16,6 +16,20 @@ const ANSWER_SIZE = canvas.height/5;
 let questioncount = 0
 let Points = 0
 var Answer = ""
+
+const MOVEMENT_SPEED = 5;
+let positionX = 400;
+let positionY = 850;
+
+var flag = true;
+var timeplayed;
+
+const CYCLE_LOOP = [0, 1, 0, 2];
+let currentLoopIndex = 0;
+let frameCount = 0;
+let currentDirection = 0;
+let keyPresses = {};
+
 async function getCsvData(){
     const response = await  fetch('quizQuestionTest.csv');// get data
     const filedata = response.text()
@@ -31,8 +45,12 @@ async function getCsvData(){
 (async () => {
     await getCsvData()
 })()
+
+alert("pause")
+    
 let img = new Image();
 img.src = 'Astra2-removebg-preview.png';
+var time =  new Date().valueOf()
 img.onload = function() {
     window.requestAnimationFrame(gameLoop);
 };
@@ -42,28 +60,20 @@ function correctAnswer(){
     console.log(Answer)
     if(Answer == "A") {
         if (positionX > (canvas.width)/ 3) {
-            alert("wrong")
         } else {
-            alert(positionX)
-            alert(canvas.width/3)
-            alert("correct")
             Points = Points + 1
         }
     }
     else if(Answer == "B") {
         if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) {
             Points = Points + 1
-            alert("correct")
         } else {
-            alert("wrong")
         }
     }
         else if(Answer == "C") {
             if (positionX < 2 * (canvas.width / 3)) {
-                alert("wrong")
             } else {
                 Points = Points + 1
-                alert("correct")
             }
         }
     }
@@ -76,7 +86,6 @@ function drawAnswers(){
                 ctx.strokeRect(x, y, canvas.width / 3, canvas.height / 5)
                 ctx.font = "30px Comic Sans ms";
                 ctx.fillStyle = "white"
-                alert(data[questioncount][0])
                 document.getElementById("question").innerHTML = data[questioncount][0]
                 document.getElementById("points").innerHTML = "You have scored " + Points + "/10 points so far"
                 Answer = data[questioncount][4]
@@ -110,28 +119,18 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         positionX = 0
         return false;
     }
-    if(positionY < ANSWER_SIZE){
-        alert("correct ?")
+    if(positionY < ANSWER_SIZE || timeplayed > 10){
         correctAnswer()
         positionY = 850
-        keyUpListener(keyPresses.w)
         keyPresses=[]
-        alert(questioncount)
         questioncount = questioncount + 1;
         flag = true;
-        alert(flag)
         return true;
     }
     ctx.drawImage(img,
         frameX * WIDTH, frameY * HEIGHT, WIDTH, HEIGHT,
         canvasX, canvasY, SCALED_WIDTH, SCALED_HEIGHT);
 }
-
-const CYCLE_LOOP = [0, 1, 0, 2];
-let currentLoopIndex = 0;
-let frameCount = 0;
-let currentDirection = 0;
-let keyPresses = {};
 
 window.addEventListener('keydown', keyDownListener);
 function keyDownListener(event) {
@@ -143,12 +142,9 @@ function keyUpListener(event) {
     keyPresses[event.key] = false;
 }
 
-const MOVEMENT_SPEED = 5;
-let positionX = 400;
-let positionY = 850;
-
-var flag = true;
 function gameLoop() {
+    timeplayed = Math.round((new Date().valueOf() - time)/1000)
+    document.getElementById("time").innerHTML = timeplayed
     ctx.clearRect(500, 500, canvas.width, canvas.height);
     if (keyPresses.w) {
         positionY -= MOVEMENT_SPEED;
@@ -168,8 +164,8 @@ function gameLoop() {
         }
             
         let won = drawFrame(0, 0, positionX, positionY);
-        if (won === true) {
-
+        if (won === true || timeplayed > 10) {
+            time = new Date().valueOf()
             flag = true;
             Points = Points + 1;
             window.requestAnimationFrame(gameLoop);
@@ -179,7 +175,6 @@ function gameLoop() {
     }
     else {	
         let Points2 = Points.toString()
-        alert(Points2)
         sessionStorage.setItem("Points", Points2)
         document.cookie = "Points" + "=" + Points2 + "; " + ";localhost=;path=/";
         window.location.replace("/LeaderboardEntry");
