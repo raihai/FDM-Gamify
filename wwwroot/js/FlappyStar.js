@@ -1,8 +1,8 @@
 
 
 var i =0;
-var x=10;
-var y=10;
+var x=0;
+var y=0;
 var data = []//[Question1,A,B,C,A]...
 
 let canvas = document.querySelector('canvas');
@@ -15,12 +15,7 @@ const SCALED_HEIGHT = SCALE * HEIGHT;
 const ANSWER_SIZE = canvas.height/5;
 let questioncount = 0
 let Points = 0
-getCsvData()
-let img = new Image();
-img.src = 'Astra2.png';
-img.onload = function() {
-    window.requestAnimationFrame(gameLoop);
-};
+var Answer = ""
 async function getCsvData(){
     const response = await  fetch('quizQuestionTest.csv');// get data
     const filedata = response.text()
@@ -29,13 +24,23 @@ async function getCsvData(){
         var line = splitFile[j]// current line
         var splitline = line.split(",")//split line by comma
         var array = [splitline[0],splitline[1],splitline[2],splitline[3],splitline[4].replace("\n","")]
-        await data.push(array) // add line to array
+        data.push(array) // add line to array
     }
     return data
 }
+(async () => {
+    await getCsvData()
+})()
+let img = new Image();
+img.src = 'Astra2-removebg-preview.png';
+img.onload = function() {
+    window.requestAnimationFrame(gameLoop);
+};
+
 function correctAnswer(){
+
     console.log(Answer)
-    if(Answer == 1) {
+    if(Answer == "A") {
         if (positionX > (canvas.width)/ 3) {
             alert("wrong")
         } else {
@@ -45,15 +50,15 @@ function correctAnswer(){
             Points = Points + 1
         }
     }
-    else if(Answer == 2) {
+    else if(Answer == "B") {
         if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) {
-            alert("wrong")
-        } else {
             Points = Points + 1
             alert("correct")
+        } else {
+            alert("wrong")
         }
     }
-        else if(Answer == 3) {
+        else if(Answer == "C") {
             if (positionX < 2 * (canvas.width / 3)) {
                 alert("wrong")
             } else {
@@ -63,22 +68,33 @@ function correctAnswer(){
         }
     }
 function drawAnswers(){
-    let imageObj = new Image();
-    imageObj.src = "SpaceForGame.png";
+         x=0;
         for (i = 1; i < 4; i++) {
-            ctx.drawImage(imageObj, x , y, canvas.width/3, canvas.height/5);
-            ctx.strokeRect(x,y,canvas.width/3,canvas.height/5)
-            ctx.font = "40pt Calibri";
-            document.getElementById("question").innerHTML = data[questioncount][0]
-            ctx.fillText(data[questioncount][i],x+ 180,120);
-            x = x+ 400;
+            let imageObj = new Image();
+            imageObj.onload = function () {
+                ctx.drawImage(imageObj, x, y, canvas.width / 3, canvas.height / 5);
+                ctx.strokeRect(x, y, canvas.width / 3, canvas.height / 5)
+                ctx.font = "30px Comic Sans ms";
+                ctx.fillStyle = "white"
+                alert(data[questioncount][0])
+                document.getElementById("question").innerHTML = data[questioncount][0]
+                document.getElementById("points").innerHTML = "You have scored " + Points + "/10 points so far"
+                Answer = data[questioncount][4]
+                ctx.fillText(data[questioncount][(x+400)/400], x + 180, 120);
+                x = x + 400;
+                }
+                imageObj.src = "1200px-Hyades.jpg"
+            }
+        x= 0;
         }
-        x=10;
+        
+function drawBoxes(){
+    
 }
 function drawBgImg() {
     let bgImg = new Image();
-    bgImg.src = 'BusinessIntelligence.jpg';
-    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+    bgImg.src = '1200px-Hyades.jpg';
+    ctx.drawImage(bgImg, 0, 0 + ANSWER_SIZE, canvas.width, canvas.height - ANSWER_SIZE);
 }
 
 function drawFrame(frameX, frameY, canvasX, canvasY) {
@@ -95,12 +111,15 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         return false;
     }
     if(positionY < ANSWER_SIZE){
+        alert("correct ?")
         correctAnswer()
         positionY = 850
         keyUpListener(keyPresses.w)
         keyPresses=[]
         alert(questioncount)
         questioncount = questioncount + 1;
+        flag = true;
+        alert(flag)
         return true;
     }
     ctx.drawImage(img,
@@ -128,7 +147,7 @@ const MOVEMENT_SPEED = 5;
 let positionX = 400;
 let positionY = 850;
 
-
+var flag = true;
 function gameLoop() {
     ctx.clearRect(500, 500, canvas.width, canvas.height);
     if (keyPresses.w) {
@@ -143,9 +162,15 @@ function gameLoop() {
     }
     if(questioncount < 4) {
         drawBgImg()
-        drawAnswers()
+        if (flag === true){
+            drawAnswers()
+            flag = false;
+        }
+            
         let won = drawFrame(0, 0, positionX, positionY);
         if (won === true) {
+
+            flag = true;
             Points = Points + 1;
             window.requestAnimationFrame(gameLoop);
         } else {
