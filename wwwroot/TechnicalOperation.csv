@@ -1,0 +1,10 @@
+Choose the correct SELECT SQL statement.,select CustomerName from Customers;,SELECT CustomerName FROM Customers,SELECT CustomerName FROM Customers;,SELECT CustomerName FROM Customers;
+What does CLI stand for?,Command Line Interface,Control Line Interface,Command Language Interface,Command Line Interface
+Which of the following is NOT a correct way to combine options?,-l -r,-lr,-r l,-r l
+In a system using Discretionary Access Control each asset has what?,An owner,An auditor,Permissions,Permissions
+In a Role Based Access Control system what is a role hierarchy?,A system to assign roles to a user based on their job title Incorrect,A system to assign roles to users,A system used to resolve conflicts between roles,A system to assign roles to users
+Which command will allow a user to change the permissions of a file?,chmod,cmod,choe,chmod
+Which command will allow you to change your current directory?,cd,ch,ls,cd
+Which of the following rules violates the principles of the Biba Integrity Model?,"Users can ""write down"" to a lower level","Users can ""read up"" to a higher level","Users can ""write up"" to a higher level","Users can ""write up"" to a higher level"
+Which SQL statement is using valid syntax?,SELECT DISTINCT column FROM table_name;,select DISTINCT column FROM table_name;,SELECT DISTINCT column table_name,SELECT DISTINCT column FROM table_name;
+Which of the following commands can be used to display network configuration information?,net,ifconfig,pwd,ifconfig
