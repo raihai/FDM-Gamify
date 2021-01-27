@@ -19,7 +19,7 @@
     <!-- start Quiz button -->
     <div class="start_btn"><button>Start Quiz</button></div>
 
-    <!-- Rules Box -->
+    <!-- Rule Box -->
     <div class="rule_box">
         <div class="rule-title"><span>Rules of this Quiz</span></div>
         <div class="rule-list">
@@ -28,7 +28,7 @@
             <div class="rule">3. Each question is worth 1 points</div>
         </div>
         <div class="buttons">
-            <button class="quit">Exit Quiz</button>
+            <button class="quit" >Exit Quiz</button>
             <button class="restart">Continue</button>
         </div>
     </div>
@@ -45,17 +45,16 @@
         </header>
         <section>
             <div class="que_text">
-                <!-- Inserts question from JavaScript -->
+                <!-- Question inserted from JavaScript -->
             </div>
             <div class="option_list">
-                <!-- Inserts options from JavaScript -->
+                <!-- Options inserted from JavaScript -->
             </div>
         </section>
 
-        <!-- footer of Quiz Box -->
+        <!-- Quiz Box footer -->
         <footer>
             <div class="total_que">
-                <!-- Inserts Question Count Number from JavaScript -->
             </div>
             <button class="next_btn">Next Question</button>
         </footer>
@@ -68,7 +67,6 @@
         </div>
         <div class="complete_text">You've completed the Quiz!</div>
         <div class="score_text">
-            <!-- Here I've inserted Score Result from JavaScript -->
         </div>
         <div class="buttons">
             <button class="restart">Replay Quiz</button>
@@ -78,11 +76,9 @@
 
 </section>
 <div id="filename" value = @HttpContext.Session.Get("filename")>@sessionManager.toString(HttpContext.Session.Get("FileName"))</div>
-<!-- separate file for questions and answer -->
-<script type='text/javascript' src='js/QuizQuestions.js'>
-</script>
-    
-    <!-- JS file for the quiz -->
+
+
+<!-- JS file for the quiz -->
     <script type='text/javascript' src='js/Quiz.js'></script> 
     
     
