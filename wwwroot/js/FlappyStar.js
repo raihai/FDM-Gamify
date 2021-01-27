@@ -81,7 +81,7 @@ function correctAnswer(){
             }
         }
     }
-function drawAnswers(){
+function drawAnswers(randomquestionchooser){
          x=0;
         for (i = 1; i < 4; i++) {
             let imageObj = new Image();
@@ -90,15 +90,16 @@ function drawAnswers(){
                 ctx.strokeRect(x, y, canvas.width / 3, canvas.height / 5)
                 ctx.font = "20px Comic Sans ms";
                 ctx.fillStyle = "white"
-                var randomquestionchooser = Math.floor(Math.random() * data.length);
+
                 document.getElementById("question").innerHTML = data[randomquestionchooser][0]
                 document.getElementById("points").innerHTML = "You have scored " + Points.toString() + "/10 points so far"
                 Answer = data[randomquestionchooser][4]
                 text = data[randomquestionchooser][(x+400)/400]
-                delete data[randomquestionchooser]
                 wrapText(ctx,text,x,ANSWER_SIZE/2,canvas.width/3,20)
-                
                 x = x + 400;
+                if(x==1200){
+                    data.splice(randomquestionchooser,1)
+                }
                 }
                 imageObj.src = "1200px-Hyades.jpg"
             }
@@ -184,8 +185,10 @@ function gameLoop() {
     if(questioncount < 10) {
         drawBgImg()
         if (flag === true){
-            drawAnswers()
+            var randomquestionchooser = Math.floor(Math.random() * (10-questioncount));
+            drawAnswers(randomquestionchooser)
             flag = false;
+
         }
             
         let won = drawFrame(0, 0, positionX, positionY);
