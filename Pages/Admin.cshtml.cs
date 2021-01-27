@@ -95,7 +95,7 @@ namespace fdm_gamify2.Pages
             // returns completed string
             return builder.ToString();
         }
-
+ 
             
     }
 }

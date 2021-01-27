@@ -232,8 +232,10 @@ async function startGame() {
 // if quitQuiz button clicked
     quit_quiz.onclick = () => {
         let Points = userScore.toString()
-
+        
         sessionStorage.setItem("Points", Points) // storing user score as a session
+        document.cookie = "QuizComplete="+fileNa.slice(0,-4)+ "; " + ";localhost=;path=/";
+        document.cookie = "Points" + "=" + Points + "; " + ";localhost=;path=/";
         window.location.replace("/LeaderboardEntry"); //load LeaderboardEntry Page with the points
     }
 

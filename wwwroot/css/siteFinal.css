@@ -472,3 +472,7 @@ a.btn-grad-footer, button.btn-grad-footer {
   font-weight: 700;
   display: inline-block;
 }
+.line{
+  width: 1000px;
+  border: 2px solid red;
+}

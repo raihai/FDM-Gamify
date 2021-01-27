@@ -27,6 +27,7 @@ namespace fdm_gamify2
             SessionManager sessionManager = new SessionManager();// creates new session manager
             fileReader.fileReader(fileName, sessionManager.toInt(context.Session.Get("Count")));
             sessionManager.QuizSession(context, fileReader, sessionManager); //creates a session
+            
         }
 
 
@@ -70,7 +71,6 @@ namespace fdm_gamify2
         {
             context.Session.Set("Count", (BitConverter.GetBytes(0)));// sets the file for the data to be read from. 
             context.Session.Set("FileName", @Encoding.ASCII.GetBytes((filename)));
-            Console.WriteLine(context.Session.Get("FileName"));
             return "";
         }
 
@@ -89,6 +89,7 @@ namespace fdm_gamify2
 
             if (field.FieldType == b.GetType())// if the field is an integer
             {
+                Console.WriteLine(field.GetValue(field.FieldType));
                 byte[] bytes = BitConverter.GetBytes((int) field.GetValue(field));
                 return bytes;
             }

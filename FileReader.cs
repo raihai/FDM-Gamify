@@ -4,12 +4,12 @@ namespace fdm_gamify2
 {
     public class FileReader
     {
-        public static int count = 0;
-        public static string question = "Question";
-        public static string A;
-        public static string B;
-        public static string C;
-        public static string correctAnswer;
+        public int count = 0;
+        public string question = "Question";
+        public string A;
+        public string B;
+        public string C;
+        public string correctAnswer;
         public string fileReader(string fileName,int passedCount)
         {
             // Read each line of the file into a string array. Each element
