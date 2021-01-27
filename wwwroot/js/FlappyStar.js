@@ -90,11 +90,14 @@ function drawAnswers(){
                 ctx.strokeRect(x, y, canvas.width / 3, canvas.height / 5)
                 ctx.font = "20px Comic Sans ms";
                 ctx.fillStyle = "white"
-                document.getElementById("question").innerHTML = data[questioncount][0]
+                var randomquestionchooser = Math.floor(Math.random() * data.length);
+                document.getElementById("question").innerHTML = data[randomquestionchooser][0]
                 document.getElementById("points").innerHTML = "You have scored " + Points.toString() + "/10 points so far"
-                Answer = data[questioncount][4]
-                text = data[questioncount][(x+400)/400]
+                Answer = data[randomquestionchooser][4]
+                text = data[randomquestionchooser][(x+400)/400]
+                delete data[randomquestionchooser]
                 wrapText(ctx,text,x,ANSWER_SIZE/2,canvas.width/3,20)
+                
                 x = x + 400;
                 }
                 imageObj.src = "1200px-Hyades.jpg"
