@@ -7,6 +7,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* body layout CSS */
+
 body{
     background: #2d3036;
 }
@@ -51,6 +53,7 @@ body{
     background: #fff;
     cursor: pointer;
 }
+/* Rule Box CSS */
 
 .rule_box{
     width: 540px;
@@ -109,6 +112,8 @@ body{
     border: 1px solid #007bff;
     transition: all 0.3s ease;
 }
+
+/* Quiz box CSS */
 
 .quiz_box{
     width: 550px;
@@ -320,6 +325,8 @@ footer button.show{
     pointer-events: auto;
     transform: scale(1);
 }
+
+/* Result box CSS */
 
 .result_box{
     background: #fff;
