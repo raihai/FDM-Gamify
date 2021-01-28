@@ -18,6 +18,10 @@ namespace fdm_gamify2.Pages
         {// when they submit their nickname
             Console.WriteLine("post");
             string Nickname  = HttpContext.Request.Form["nickname"];
+            if (fdm_gamify2.ServerFilter.ContainsBadChars(Nickname))
+            {
+                Response.Redirect("./ServerFilterError");
+            }
             sessionManager.newUser(Nickname,Int32.Parse(HttpContext.Request.Cookies["Points"]), HttpContext.Request.Cookies["QuizComplete"]);
             HttpContext.Response.Cookies.Delete("Points");
             HttpContext.Response.Redirect("/Leaderboard");

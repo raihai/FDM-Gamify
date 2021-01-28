@@ -18,12 +18,11 @@
     <div class="container">
         <div>
             <form method="post">
-                <select name="tablename" id="tablename" onsubmit="">
+                <select onchange="this.form.submit()" name="tablename" id="tablename" onsubmit="">
                     <option value="Business">Business Intelligence</option>
                     <option value="SoftwareTesting">SoftwareTesting</option>
                     <option value="TechnicalOperation">TechnicalOperation</option>
                 </select>
-                <input type="submit" value="Choose table">
             </form>  
         </div>
         <br>
