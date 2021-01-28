@@ -19,13 +19,13 @@ namespace fdm_gamify2
                 string htmlstring = "<form id='CsvForm'>";
                 if (HttpContext.Session.GetString("filename") == null)
                 {
-                    HttpContext.Session.SetString("filename", "SoftwareTesting");
+                    HttpContext.Session.SetString("filename", @"wwwroot/"+"SoftwareTesting");
                 }
                 else
                 {
                     HttpContext.Session.SetString("filename", HttpContext.Session.GetString("filename"));
                 }
-                string filename = @"wwwroot/"+HttpContext.Session.GetString("filename");
+                string filename = HttpContext.Session.GetString("filename");
                 Console.WriteLine("file name is "+ filename);
                 // Read the file and display it line by line.  
                 System.IO.StreamReader file =
@@ -78,7 +78,7 @@ namespace fdm_gamify2
         {
             if (HttpContext.Request.Form.ContainsKey("tablename"))// if choosing to change csv file
             {
-                HttpContext.Session.SetString("filename",HttpContext.Request.Form["tablename"]);
+                HttpContext.Session.SetString("filename",@"wwwroot/"+HttpContext.Request.Form["tablename"]);
                 OnGet();
             }
             else// if editing the csv
