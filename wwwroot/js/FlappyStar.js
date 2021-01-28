@@ -62,19 +62,23 @@ function startgame() {
 function correctAnswer(){
 
     console.log(Answer)
-    if(Answer == "A") {
+    alert("correct answer")
+    alert(data[randomquestionchooser][4])
+    alert(data[randomquestionchooser][1])
+    if(data[randomquestionchooser][4] === data[randomquestionchooser][1]) {
         if (positionX > (canvas.width)/ 3) {
+            // they are in B or C
         } else {
             Points = Points + 1
         }
     }
-    else if(Answer == "B") {
+    else if(data[randomquestionchooser][4] === data[randomquestionchooser][2]) {
         if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) {
             Points = Points + 1
         } else {
         }
     }
-        else if(Answer == "C") {
+        else if(data[randomquestionchooser][4] === data[randomquestionchooser][3]) {
             if (positionX < 2 * (canvas.width / 3)) {
             } else {
                 Points = Points + 1
@@ -146,6 +150,7 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         return false;
     }
     if(positionY < ANSWER_SIZE || timeplayed > 10){
+        alert("here")
         correctAnswer()
         positionY = 850
         keyPresses=[]
@@ -167,7 +172,8 @@ window.addEventListener('keyup', keyUpListener);
 function keyUpListener(event) {
     keyPresses[event.key] = false;
 }
-
+var randomquestionchooser;
+var randomnumbers = [1,2,3,4,5,6,7,8,9]
 function gameLoop() {
     timeplayed = Math.round((new Date().valueOf() - time)/1000).toString()
     document.getElementById("time").innerHTML = timeplayed
@@ -185,7 +191,7 @@ function gameLoop() {
     if(questioncount < 10) {
         drawBgImg()
         if (flag === true){
-            var randomquestionchooser = Math.floor(Math.random() * (10-questioncount));
+            randomquestionchooser = Math.floor(Math.random() * (10-questioncount));
             drawAnswers(randomquestionchooser)
             flag = false;
 
