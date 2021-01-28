@@ -15,7 +15,7 @@ namespace fdm_gamify2.Pages
         }
 
         public async void OnPost()
-        {
+        {// when they submit their nickname
             Console.WriteLine("post");
             string Nickname  = HttpContext.Request.Form["nickname"];
             sessionManager.newUser(Nickname,Int32.Parse(HttpContext.Request.Cookies["Points"]), HttpContext.Request.Cookies["QuizComplete"]);
