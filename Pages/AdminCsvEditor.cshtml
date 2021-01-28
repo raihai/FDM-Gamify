@@ -1,34 +1,30 @@
 @page "/AdminCsvEditor"
 @using Microsoft.AspNetCore.Http
 @model fdm_gamify2.AdminCsvEditor
-
 @{
     ViewData["Title"] = "Admin";
 }
 
-
 <section class="fdm-header-banner reduced-height2 ">
     <div  class = "text-center fdm">
         <h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Users</span></h1><br>
-	
+   
     </div>
     <section style="width: 1920px;border: red solid 2px;margin: 0 auto; text-align: center">
         <div>
             <link rel="stylesheet" href="css/siteFinal.css">
             <form id="form" method="post" onsubmit="cookiesetter()">
-                <select name="tablename" id="tablename">
+                <select onchange="this.form.submit()" name="tablename" id="tablename">
                     <option value="Business">Business Intelligence</option>
                     <option value="SoftwareTesting">SoftwareTestingQuiz</option>
                     <option value="TechnicalOperation">TechnicalOperation</option>
                 </select>
-                <input type="submit" value="Choose table" onclick="cookiesetter()">
             </form>
         </div>
         <form method="post" onsubmit="setter()">
             @Html.Raw(HttpContext.Session.GetString("HtmlString"))
             <input type="submit" value="Update File">
         </form>
-
     </section>
     <br>
     <br>
@@ -37,7 +33,6 @@
             <input type="submit" style="background-color: #f8f9fa; display: table; text-align: center; margin: 0 auto" value="Back to Admin Page"/>
         </form><br>
         </div>
-
     <script> function clearIDbox(){
         document.getElementById("PersonToDelete").innerHTML = "";
     }
