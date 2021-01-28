@@ -10,8 +10,8 @@
         <h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Users</span></h1><br>
    
     </div>
-    <section style="width: 1920px;border: red solid 2px;margin: 0 auto; text-align: center">
-        <div>
+    <section class="secondSelection" style="border: red solid 2px;text-align:  center">
+        <div> 
             <link rel="stylesheet" href="css/siteFinal.css">
             <form id="form" method="post" onsubmit="cookiesetter()">
                 <select onchange="this.form.submit()" name="tablename" id="tablename">
@@ -21,7 +21,7 @@
                 </select>
             </form>
         </div>
-        <form method="post" onsubmit="setter()">
+        <form method="post" onsubmit="setter()" style="text-align: center">
             @Html.Raw(HttpContext.Session.GetString("HtmlString"))
             <input type="submit" value="Update File">
         </form>
