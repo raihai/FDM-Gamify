@@ -17,10 +17,10 @@ namespace fdm_gamify2
             {
                 if (Value.Contains(Input))
                 {
-                    return false;
+                    return true;
                 }
             }
-            return true;
+            return false;
         }
         //checks if the value inputted contains any of the banned strings if so it returns true if not it returns false
     }

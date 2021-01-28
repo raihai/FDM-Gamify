@@ -33,36 +33,29 @@ namespace fdm_gamify2
             //Encrypting Password.
             md5.ComputeHash(EncryptedPassword);
             EncryptedPassword = md5.Hash;
-            //Test by printing both encrypted values.
-            Console.Out.WriteLine("\n" + System.Text.Encoding.ASCII.GetString(EncryptedUsername));
-            Console.Out.WriteLine(System.Text.Encoding.ASCII.GetString(EncryptedPassword) + "\n");
 
             //Get every row for the database, and then check each row against log in details.
             DataTable dataTable = databaseConnection.GetDataTable("SELECT * FROM AdminUsers");
-            //databaseConnection.NewAdmin(EncryptedUsername, EncryptedPassword);
-          //  databaseConnection.ExecuteQuery("Insert into AdminUsers(Username, Password) VALUES('" + EncryptedUsername + "','" + EncryptedPassword + "');");
-           for (int i = 0; i < dataTable.Rows.Count; i++)
-           {
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
                byte[] DatabaseUsername = (byte[]) dataTable.Rows[i]["Username"];
                byte[] DatabasePassword = (byte[]) dataTable.Rows[i]["Password"];
-               Console.Out.WriteLine(System.Text.Encoding.ASCII.GetString(DatabaseUsername));
-               Console.Out.WriteLine(System.Text.Encoding.ASCII.GetString(DatabasePassword));
                //Check if there's a match. If there is, then store the fact that they are an admin in the session.
                 if (Comparitor(DatabaseUsername, DatabasePassword, EncryptedUsername, EncryptedPassword))
                 {
-                    Console.Out.WriteLine("here");
                     SessionManager session = new SessionManager();
                     session.NewUser(httpContext, session, "true");
                     databaseConnection.CloseConnection();
                     return true;
-                }
-            }
+                } 
+            } 
             databaseConnection.CloseConnection();
             return false;
         }
         
         public bool Comparitor(Byte[] dbUsername, Byte[] dbPassword, Byte[] inputUsername, Byte[] inputPassword)
         {
+            //to compare two byte arrays we had to manually check each individual item
             Boolean Match = true;
             for (int i = 0; i < dbUsername.Length; i++)
             {
