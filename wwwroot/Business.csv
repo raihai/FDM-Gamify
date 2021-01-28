@@ -1,12 +1,10 @@
-What is SQL ?,SQL is a special-purpose programming language designed to handle data in a relational database management system.,SQL is a special-purpose programming language designed to handle data in a relational database management system.,SQL is a special-purpose programming language made to program games.
-SQL is a special-purpose programming language designed for web development.,_________ comprises the strategies and technologies used by enterprises for the data analysis of business information.,Technical Operation,Technical Operation
-Business Intelligence,Software Testing,Which one of these is not related to business intelligence?,Descriptive analytics
-Descriptive analytics,Predictive analytics,Unit Testing,What is the correct definition of Data Mining?
-It is the process of discovering patterns in large data sets.,It is the process of discovering patterns in large data sets.,It is a special-purpose programming language designed to handle data in a relational database management system.,It refers to the strategies and technologies used by an enterprise for data analysis.
-How many levels does the database architecture have?,Five,Five,Three
-Four,The part of the BI software application that parses the questions entered by employees is known as the ______,Session Layer,Session Layer
-Data link layer,Semantic layer,Both data-mining and OLAP software are often integrated into _____ for the purpose of collecting business intelligence about customers.,SCM systems
-SCM systems,ERP systems,CRM systems,In banking _______  is employed to find profitable customers and patterns of fraud.
-Resource recovery,Resource recovery,Data mining,Information integration
-The data-mining application that identifies which prospective clients should be included in a mailing or email list to obtain the highest response rate is known as ______,Trend analysis,Trend analysis,Customer churn
-Direct marketing,OLAP might process data from a _____,Non-relational database,Non-relational database
+What is SQL ?,SQL is a special-purpose programming language designed to handle data in a relational database management system.,SQL is a special-purpose programming language made to program games.,SQL is a special-purpose programming language designed for web development.,SQL is a special-purpose programming language designed to handle data in a relational database management system.
+_________ comprises the strategies and technologies used by enterprises for the data analysis of business information.,Technical Operation,Business Intelligence,Software Testing,Business Intelligence
+Which one of these is not related to business intelligence?,Descriptive analytics,Predictive analytics,Unit Testing,Unit Testing
+What is the correct definition of Data Mining?,It is the process of discovering patterns in large data sets.,It is a special-purpose programming language designed to handle data in a relational database management system.,It refers to the strategies and technologies used by an enterprise for data analysis.,It is the process of discovering patterns in large data sets.
+How many levels does the database architecture have?,Five,Three,Four,Three
+The part of the BI software application that parses the questions entered by employees is known as the ______,Session Layer,Data link layer,Semantic layer,Semantic layer
+Both data-mining and OLAP software are often integrated into _____ for the purpose of collecting business intelligence about customers.,SCM systems,ERP systems,CRM systems,CRM systems
+In banking _______  is employed to find profitable customers and patterns of fraud.,Resource recovery,Data mining,Information integration,Data mining
+The data-mining application that identifies which prospective clients should be included in a mailing or email list to obtain the highest response rate is known as ______,Trend analysis,Customer churn,Direct marketing,Direct marketing
+OLAP might process data from a _____,Non-relational database,Cloud database,Transactional database,Transactional database
