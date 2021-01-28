@@ -18,13 +18,11 @@
     <div class="container">
         <div>
             <form method="post">
-                <select name="tablename" id="tablename" onsubmit="">
+                <select onchange="this.form.submit()" name="tablename" id="tablename" onsubmit="">
                     <option value="Business">Business Intelligence</option>
                     <option value="SoftwareTesting">SoftwareTesting</option>
                     <option value="TechnicalOperation">TechnicalOperation</option>
-                    <option value="audi">Audi</option>
                 </select>
-                <input type="submit" value="Choose table">
             </form>  
         </div>
         <br>
@@ -44,10 +42,16 @@
         <br>
         <br>
         <div>
-            <form action="Admin-Login">
+            <form action="./Admin-Login">
                 <input type="submit" style="background-color: #f8f9fa; display: table; text-align: center; margin: 0 auto" value="Back to Admin Login"/>
             </form><br>
         </div>
+        
+        <div>
+            <form action="./AdminCsvEditor">
+                <input type="submit" style="background-color: #f8f9fa; display: table; text-align: center; margin: 0 auto" value="Edit Csv files"/>
+            </form><br>
+            </div>
     </div>
 
     <script> function clearIDbox(){

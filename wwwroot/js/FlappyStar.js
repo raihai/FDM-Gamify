@@ -16,7 +16,7 @@ const SCALED_HEIGHT = SCALE * HEIGHT;
 const ANSWER_SIZE = canvas.height/5;
 let questioncount = 0
 let Points = 0
-var Answer = ""
+var Answer = "test"
 let img;
 let time;
 const MOVEMENT_SPEED = 5;
@@ -61,20 +61,27 @@ function startgame() {
 
 function correctAnswer(){
 
-    console.log(Answer)
-    if(Answer == "A") {
+
+
+
+    
+    if(Answer === "A") {
+
         if (positionX > (canvas.width)/ 3) {
+            // they are in B or C
         } else {
             Points = Points + 1
         }
     }
-    else if(Answer == "B") {
+    else if(Answer === "B") {
+
         if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) {
             Points = Points + 1
         } else {
         }
     }
-        else if(Answer == "C") {
+        else if(Answer === "C") {
+
             if (positionX < 2 * (canvas.width / 3)) {
             } else {
                 Points = Points + 1
@@ -93,7 +100,7 @@ function drawAnswers(randomquestionchooser){
 
                 document.getElementById("question").innerHTML = data[randomquestionchooser][0]
                 document.getElementById("points").innerHTML = "You have scored " + Points.toString() + "/10 points so far"
-                Answer = data[randomquestionchooser][4]
+
                 text = data[randomquestionchooser][(x+400)/400]
                 wrapText(ctx,text,x,ANSWER_SIZE/2,canvas.width/3,20)
                 x = x + 400;
@@ -145,13 +152,20 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         positionX = 0
         return false;
     }
-    if(positionY < ANSWER_SIZE || timeplayed > 10){
+    if(positionY < ANSWER_SIZE){
         correctAnswer()
         positionY = 850
         keyPresses=[]
         questioncount = questioncount + 1;
         flag = true;
         return true;
+    }
+    if(timeplayed > 10){
+        positionY = 850
+        keyPresses=[]
+        questioncount = questioncount + 1;
+        flag = true;
+        return true; 
     }
     ctx.drawImage(img,
         frameX * WIDTH, frameY * HEIGHT, WIDTH, HEIGHT,
@@ -187,6 +201,15 @@ function gameLoop() {
         if (flag === true){
             var randomquestionchooser = Math.floor(Math.random() * (10-questioncount));
             drawAnswers(randomquestionchooser)
+            if(data[randomquestionchooser][1] === data[randomquestionchooser][4].slice(0, -1)){
+                Answer ="A"
+            }
+            if(data[randomquestionchooser][2] === data[randomquestionchooser][4].slice(0, -1)){
+                Answer="B"
+            }
+            if(data[randomquestionchooser][3] === data[randomquestionchooser][4].slice(0, -1)){
+                Answer="C"
+            }
             flag = false;
 
         }

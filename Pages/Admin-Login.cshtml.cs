@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
 namespace fdm_gamify2.Pages
 {
     public class Admin_Login : PageModel
@@ -12,11 +11,9 @@ namespace fdm_gamify2.Pages
         {
             
         }
-
         public async void OnPost()
         {
             //fetch form data
-
             string Username = HttpContext.Request.Form["Username"];
             string Password = HttpContext.Request.Form["Password"];
             
