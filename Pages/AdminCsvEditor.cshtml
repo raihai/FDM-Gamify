@@ -1,4 +1,4 @@
-@page "/AdminCsvEdtior"
+@page "/AdminCsvEditor"
 @using Microsoft.AspNetCore.Http
 @model fdm_gamify2.AdminCsvEditor
 
@@ -30,6 +30,13 @@
         </form>
 
     </section>
+    <br>
+    <br>
+    <div>
+        <form action="./Admin">
+            <input type="submit" style="background-color: #f8f9fa; display: table; text-align: center; margin: 0 auto" value="Back to Admin Page"/>
+        </form><br>
+        </div>
 
     <script> function clearIDbox(){
         document.getElementById("PersonToDelete").innerHTML = "";
