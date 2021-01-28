@@ -195,7 +195,6 @@ function gameLoop() {
         if (won === true || timeplayed > 10) {
             time = new Date().valueOf()
             flag = true;
-            Points = Points + 1;
             window.requestAnimationFrame(gameLoop);
         } else {
             window.requestAnimationFrame(gameLoop);

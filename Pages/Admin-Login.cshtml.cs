@@ -28,7 +28,7 @@ namespace fdm_gamify2.Pages
             if (adminLogin.Login(HttpContext, Username, Password))
             {
                 SessionManager sessionManager = new SessionManager();
-                HttpContext.Session.Set("tablename", sessionManager.stringToByte("SoftwareTestingQuiz"));
+                HttpContext.Session.Set("tablename", sessionManager.stringToByte("SoftwareTesting"));
                 Response.Redirect("/Admin");
             }
             else

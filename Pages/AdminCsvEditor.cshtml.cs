@@ -19,14 +19,14 @@ namespace fdm_gamify2
                 string htmlstring = "<form id='CsvForm'>";
                 if (HttpContext.Session.GetString("filename") == null)
                 {
-                    HttpContext.Session.SetString("filename", "wwwroot/SoftwareTesting");
+                    HttpContext.Session.SetString("filename", "SoftwareTesting");
                 }
                 else
                 {
-                    HttpContext.Session.SetString("filename", "wwwroot/"+HttpContext.Session.GetString("filename"));
+                    HttpContext.Session.SetString("filename", HttpContext.Session.GetString("filename"));
                 }
-                string filename = HttpContext.Session.GetString("filename");
-
+                string filename = @"wwwroot/"+HttpContext.Session.GetString("filename");
+                Console.WriteLine("file name is "+ filename);
                 // Read the file and display it line by line.  
                 System.IO.StreamReader file =
                     new System.IO.StreamReader(filename+".csv");  
@@ -50,16 +50,16 @@ namespace fdm_gamify2
 
                         <div style='float:left;margin-right:20px;'>
                             <label for='AnswerB+{counter}'>Answer B</label><br/>
-                            <input style='width: 300px' id='AnswerB+{counter}' type='text' height=200px value='{AnswerA}' name='AnswerB{counter}'>
+                            <input style='width: 300px' id='AnswerB+{counter}' type='text' height=200px value='{AnswerB}' name='AnswerB{counter}'>
                         </div>
                         
                         <div style='float:left;margin-right:20px;'>
                             <label for='AnswerC+{counter}'>Answer C</label><br/>
-                            <input style='width: 300px' id='AnswerC+{counter}' type='text' height=200px value='{AnswerB}' name='AnswerC{counter}'>
+                            <input style='width: 300px' id='AnswerC+{counter}' type='text' height=200px value='{AnswerC}' name='AnswerC{counter}'>
                         </div>
                         <div style='float:left;margin-right:20px;'>
                             <label for='Answer+'{counter}'>Correct Answer </label><br/>
-                            <input style='width: 300px' id='Answer+{counter}' type='text' height=200px value='{AnswerC}' name='Answer{counter}'>
+                            <input style='width: 300px' id='Answer+{counter}' type='text' height=200px value='{Answer}' name='Answer{counter}'>
                         </div>
                         <br style='clear:both;'>";
                     counter++;
@@ -91,15 +91,18 @@ namespace fdm_gamify2
                 {
                     foreach (var key in HttpContext.Request.Form.Keys)
                     {
-                        
+                        Console.WriteLine(HttpContext.Request.Form[key]);
                         newline = newline + "," + HttpContext.Request.Form[key];
                         count = count + 1;
-                        if (count % 4 == 0)
+                        if (count % 5 == 0)
                         {
-                            newline = newline.Substring(1);
-                            file.WriteLine(newline);
-                            count = 0;
-                            newline = "";
+                            if (newline != "")
+                            {
+                                newline = newline.Substring(1);
+                                file.WriteLine(newline);
+                                count = 0;
+                                newline = "";
+                            }
                         }
                     }
                 }
