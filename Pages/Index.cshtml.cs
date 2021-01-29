@@ -12,7 +12,6 @@ namespace fdm_gamify2.Pages
     public class IndexModel : PageModel
     {
         
-        GameManager _gameManager = new GameManager();
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
