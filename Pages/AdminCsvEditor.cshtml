@@ -13,8 +13,10 @@
     <section class="secondSelection" style="border: red solid 2px;text-align:  center">
         <div> 
             <link rel="stylesheet" href="css/siteFinal.css">
+            <label style="color: white">Select table</label>
             <form id="form" method="post" onsubmit="cookiesetter()">
                 <select onchange="this.form.submit()" name="tablename" id="tablename">
+                    <option value="---">---</option>
                     <option value="Business">Business Intelligence</option>
                     <option value="SoftwareTesting">SoftwareTestingQuiz</option>
                     <option value="TechnicalOperation">TechnicalOperation</option>
