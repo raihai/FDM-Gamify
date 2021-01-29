@@ -17,14 +17,15 @@
 	
     <div class="container">
         <div>
+            <label style="color: white">Select table</label>
             <form method="post">
-                <select name="tablename" id="tablename">
+                <select onchange="this.form.submit()" name="tablename" id="tablename">
+                    <option value="---">---</option>
                     <option value="Business">Business Intelligence</option>
                     <option value="SoftwareTesting">SoftwareTesting</option>
                     <option value="TechnicalOperation">TechnicalOperation</option>
                 </select>
-                <input type="submit"><br>
-            </form>  
+            </form>
         </div>
         <br>
         @Html.Raw(System.IO.File.ReadAllText("AdminTable.html"))
