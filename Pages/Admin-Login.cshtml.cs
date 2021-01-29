@@ -25,7 +25,7 @@ namespace fdm_gamify2.Pages
             if (adminLogin.Login(HttpContext, Username, Password))
             {
                 SessionManager sessionManager = new SessionManager();
-                HttpContext.Session.Set("tablename", sessionManager.stringToByte("SoftwareTesting"));
+                HttpContext.Session.Set("tablename", sessionManager.stringToByte("SoftwareTesting"));// sets the quiz to be shown as software testing
                 Response.Redirect("/Admin");
             }
             else

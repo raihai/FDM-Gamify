@@ -6,6 +6,7 @@ var x=0;
 var y=0;
 var data = []//[Question1,A,B,C,A]...
 
+// variables 
 let canvas = document.querySelector('canvas');
 let ctx = canvas.getContext('2d');
 const SCALE = 0.5;
@@ -32,7 +33,7 @@ let frameCount = 0;
 let currentDirection = 0;
 let keyPresses = {};
 
-async function getCsvData(){
+async function getCsvData(){// loads the data for the quiz
     const response = await  fetch(fileNa);// get data
     const filedata = response.text()
     var splitFile = (await filedata).split("\n")// split by line
@@ -52,10 +53,10 @@ async function getCsvData(){
 })()
 
 
-function startgame() {
+function startgame() {// starts the loop
     img = new Image();
-    img.src = 'Astra2-removebg-preview.png';
-    time = new Date().valueOf()
+    img.src = 'Astra2-removebg-preview.png';// gets the astra logo
+    time = new Date().valueOf()// gets the current start time for the counter
     img.onload = function () {
         window.requestAnimationFrame(gameLoop);
     };
@@ -67,18 +68,18 @@ function correctAnswer(){
 
 
 
-    
+// checks if they selected the right answer by checking there x values    
     if(Answer === "A") {
 
         if (positionX > (canvas.width)/ 3) {
             // they are in B or C
-        } else {
+        } else {// in left side of the screen
             Points = Points + 1
         }
     }
     else if(Answer === "B") {
 
-        if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) {
+        if (positionX < 2 * (canvas.width / 3) || positionX > canvas.width / 3) { // if in middle side of the screen
             Points = Points + 1
         } else {
         }
@@ -86,14 +87,15 @@ function correctAnswer(){
         else if(Answer === "C") {
 
             if (positionX < 2 * (canvas.width / 3)) {
-            } else {
+            } 
+            else { // if in right side of the screen
                 Points = Points + 1
             }
         }
     }
 function drawAnswers(randomquestionchooser){
          x=0;
-        for (i = 1; i < 4; i++) {
+        for (i = 1; i < 4; i++) {// writes the question and answers to the page
             let imageObj = new Image();
             imageObj.onload = function () {
                 ctx.drawImage(imageObj, x, y, canvas.width / 3, canvas.height / 5);
@@ -116,7 +118,7 @@ function drawAnswers(randomquestionchooser){
         x= 0;
         }
 
-function wrapText(context, text, x, y, maxWidth, lineHeight) {
+function wrapText(context, text, x, y, maxWidth, lineHeight) {// wraps the text of the answers into the answer boxes otherwise they go out of the boxes
     var words = text.split(' ');
     var line = '';
 
@@ -136,13 +138,13 @@ function wrapText(context, text, x, y, maxWidth, lineHeight) {
     }
     context.fillText(line, x, y);
 }
-function drawBgImg() {
+function drawBgImg() {// draw background space image
     let bgImg = new Image();
     bgImg.src = '1200px-Hyades.jpg';
     ctx.drawImage(bgImg, 0, 0 + ANSWER_SIZE, canvas.width, canvas.height - ANSWER_SIZE);
 }
 
-function drawFrame(frameX, frameY, canvasX, canvasY) {
+function drawFrame(frameX, frameY, canvasX, canvasY) {// checks if they have selected an answer, collision detection for the sides and bottom and top
     if(positionX > canvas.width - SCALED_WIDTH){
         positionX = canvas.width - SCALED_WIDTH
         return false;
@@ -155,7 +157,7 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         positionX = 0
         return false;
     }
-    if(positionY < ANSWER_SIZE){
+    if(positionY < ANSWER_SIZE){// selected answer
         correctAnswer()
         positionY = 850
         keyPresses=[]
@@ -163,7 +165,7 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         flag = true;
         return true;
     }
-    if(timeplayed > 10){
+    if(timeplayed > 10){// if they have ran out of time
         positionY = 850
         keyPresses=[]
         questioncount = questioncount + 1;
@@ -175,7 +177,7 @@ function drawFrame(frameX, frameY, canvasX, canvasY) {
         canvasX, canvasY, SCALED_WIDTH, SCALED_HEIGHT);
 }
 
-window.addEventListener('keydown', keyDownListener);
+window.addEventListener('keydown', keyDownListener);// w a s d key listener
 function keyDownListener(event) {
     keyPresses[event.key] = true;
 }
@@ -185,10 +187,11 @@ function keyUpListener(event) {
     keyPresses[event.key] = false;
 }
 
-function gameLoop() {
-    timeplayed = Math.round((new Date().valueOf() - time)/1000).toString()
+function gameLoop() {// main game loop 
+    timeplayed = Math.round((new Date().valueOf() - time)/1000).toString()// calculates timer
     document.getElementById("time").innerHTML = timeplayed
     ctx.clearRect(500, 500, canvas.width, canvas.height);
+    // wasd
     if (keyPresses.w) {
         positionY -= MOVEMENT_SPEED;
     } else if (keyPresses.s) {
@@ -199,10 +202,10 @@ function gameLoop() {
     } else if (keyPresses.d) {
         positionX += MOVEMENT_SPEED;
     }
-    if(questioncount < 10) {
+    if(questioncount < 10) {// if they havnt finished yet
         drawBgImg()
-        if (flag === true){
-            var randomquestionchooser = Math.floor(Math.random() * (10-questioncount));
+        if (flag === true){// if answers have been drawn for this question
+            var randomquestionchooser = Math.floor(Math.random() * (10-questioncount));// chooses a random question and answers to show
             drawAnswers(randomquestionchooser)
             if(data[randomquestionchooser][1] === data[randomquestionchooser][4].slice(0, -1)){
                 Answer ="A"
@@ -213,20 +216,20 @@ function gameLoop() {
             if(data[randomquestionchooser][3] === data[randomquestionchooser][4].slice(0, -1)){
                 Answer="C"
             }
-            flag = false;
+            flag = false;// disables flag so that the answers arnt written over and over
 
         }
             
         let won = drawFrame(0, 0, positionX, positionY);
-        if (won === true || timeplayed > 10) {
-            time = new Date().valueOf()
-            flag = true;
+        if (won === true || timeplayed > 10) {// if they have completed the question or ran out of time
+            time = new Date().valueOf()// sets new timer
+            flag = true;// sets to re write answers
             window.requestAnimationFrame(gameLoop);
         } else {
             window.requestAnimationFrame(gameLoop);
         }
     }
-    else {	
+    else {	// if they have finished the game store information and redirect. 
         let Points2 = Points.toString()
         sessionStorage.setItem("Points", Points2)
         document.cookie = "Points" + "=" + Points2 + "; " + ";localhost=;path=/";

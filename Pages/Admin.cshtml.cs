@@ -40,23 +40,28 @@ namespace fdm_gamify2.Pages
         }
 
         [HttpPost]
-        public async void OnPost()
+        public async void OnPost()// when the form to change tables is submitted
         {
             Console.WriteLine("on post");
-            string tablename = HttpContext.Request.Form["tablename"];
-            Console.WriteLine("Reached Delete Method");
             DatabaseConnection dc = new DatabaseConnection();
             dc.OpenConnection();
-            string id = HttpContext.Request.Form["PersonToDelete"];
-            //string query = "DELETE FROM " + tablename + " WHERE playerID=" + id + ";";
-            string query = $"DELETE FROM {tablename} WHERE playerID='{id}'";
-            Console.WriteLine(tablename);
-            dc.ExecuteQuery(query);
-            SessionManager sessionManager = new SessionManager();
-            HttpContext.Session.Set("tablename",sessionManager.stringToByte(tablename));
+            if (HttpContext.Request.Form.ContainsKey("tablename"))
+            {
+                string tablename = HttpContext.Request.Form["tablename"];// gets the table choice from the form
+                SessionManager sessionManager = new SessionManager();
+                HttpContext.Session.SetString("tablename", tablename);
+            }
+            else
+            {
+                string id = HttpContext.Request.Form["PersonToDelete"];
+                //string query = "DELETE FROM " + tablename + " WHERE playerID=" + id + ";";
+                string tablename = HttpContext.Session.GetString("tablename");
+                string query = $"DELETE FROM {tablename} WHERE playerID='{id}'";
+
+                dc.ExecuteQuery(query);
+            }
             dc.CloseConnection();
             OnGet();
-
             HttpContext.Response.Redirect(HttpContext.Request.GetDisplayUrl());;
         }
         
