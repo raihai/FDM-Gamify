@@ -24,7 +24,9 @@ function myFunction() {
     x.style.display = "none";
   }
 }</script>
-<div id="filename" value = @HttpContext.Session.Get("filename")>@sessionManager.toString(HttpContext.Session.Get("FileName"))</div>
+<div hidden>
+<div id="filename" value = @HttpContext.Session.Get("filename") style="display: none;">@sessionManager.toString(HttpContext.Session.Get("FileName"))</div>
+</div>
 <section class="fdm-header-banner reduced-height2 ">
 	<div  class = "text-center fdm">
 		<h1 itemprop="name" class="banner-heading2"><span class="font-weight-bold">Astra Game</span></h1><br>
