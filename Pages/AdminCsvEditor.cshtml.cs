@@ -91,13 +91,14 @@ namespace fdm_gamify2
                 {
                     foreach (var key in HttpContext.Request.Form.Keys)
                     {
-                        Console.WriteLine(HttpContext.Request.Form[key]);
+
                         newline = newline + "," + HttpContext.Request.Form[key];
                         count = count + 1;
                         if (count % 5 == 0)
                         {
-                            if (newline != "")
+                            if (newline.Length > 0)
                             {
+                                Console.WriteLine(" we are writing the line" + newline);
                                 newline = newline.Substring(1);
                                 file.WriteLine(newline);
                                 count = 0;

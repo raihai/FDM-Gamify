@@ -37,10 +37,13 @@ async function getCsvData(){
     const filedata = response.text()
     var splitFile = (await filedata).split("\n")// split by line
     for (let j = 0; j < splitFile.length; j++) {// each line
+
         var line = splitFile[j]// current line
+        if (line.includes(",")) {
         var splitline = line.split(",")//split line by comma
-        var array = [splitline[0],splitline[1],splitline[2],splitline[3],splitline[4]]
+        var array = [splitline[0], splitline[1], splitline[2], splitline[3], splitline[4]]
         data.push(array) // add line to array
+        }
     }
     return data
 }

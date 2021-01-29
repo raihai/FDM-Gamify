@@ -14,14 +14,15 @@ async function getData(){
     const data = await response.text()
     const rows = data.split('\n');
     rows.forEach( element => {
-        const row = element.split(',');
-        quest.push(row[0]);
-        console.log(row[0]);
-        option1.push(row[1]);
-        option2.push(row[2]);
-        option3.push(row[3]);
-        ans.push(row[4]);
-     
+        if (element.includes(",")) {
+            const row = element.split(',');
+            quest.push(row[0]);
+            console.log(row[0]);
+            option1.push(row[1]);
+            option2.push(row[2]);
+            option3.push(row[3]);
+            ans.push(row[4]);
+        }
             
         }
 
